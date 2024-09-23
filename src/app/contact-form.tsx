@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Typography,
   Card,
   CardBody,
   Radio,
@@ -17,16 +16,13 @@ export function ContactForm() {
   return (
     <section className="px-8 py-16">
       <div className="container mx-auto mb-20 text-center">
-        <Typography variant="h1" color="blue-gray" className="mb-4">
+        <h1 className="mb-4 text-blue-gray">
           Contact Us
-        </Typography>
-        <Typography
-          variant="lead"
-          className="mx-auto w-full lg:w-5/12 !text-gray-500"
-        >
+        </h1>
+        <p className="mx-auto w-full lg:w-5/12 !text-gray-500">
           Ready to get started? Feel free to reach out through the contact form,
           and let&apos;s embark on a journey of innovation and success.
-        </Typography>
+        </p>
       </div>
       <motion.div 
         initial={{ opacity: 0 }} 
@@ -36,33 +32,30 @@ export function ContactForm() {
         <Card shadow={true} className="container mx-auto border border-gray/50">
           <CardBody className="grid grid-cols-1 lg:grid-cols-7 md:gap-10">
             <div className="w-full col-span-3 rounded-lg h-full py-8 p-5 md:p-16 bg-gray-900">
-              <Typography variant="h4" color="white" className="mb-2">
+              <h4 className="mb-2 text-white">
                 Contact Information
-              </Typography>
-              <Typography
-                variant="lead"
-                className="mx-auto mb-8 text-base !text-gray-500"
-              >
+              </h4>
+              <p className="mx-auto mb-8 text-base !text-gray-500">
                 Fill up the form and our Team will get back to you within 24
                 hours.
-              </Typography>
+              </p>
               <div className="flex gap-5">
                 <PhoneIcon className="h-6 w-6 text-white" />
-                <Typography variant="h6" color="white" className="mb-2">
+                <h6 className="mb-2 text-white">
                   +1(424) 535 3523
-                </Typography>
+                </h6>
               </div>
               <div className="flex my-2 gap-5">
                 <EnvelopeIcon className="h-6 w-6 text-white" />
-                <Typography variant="h6" color="white" className="mb-2">
+                <h6 className="mb-2 text-white">
                   hello@mail.com
-                </Typography>
+                </h6>
               </div>
               <div className="flex mb-10 gap-5">
                 <TicketIcon className="h-6 w-6 text-white" />
-                <Typography variant="h6" color="white" className="mb-2">
+                <h6 className="mb-2 text-white">
                   Open Support Ticket
-                </Typography>
+                </h6>
               </div>
               <div className="flex items-center gap-5">
                 <IconButton variant="text" color="white">
@@ -116,12 +109,9 @@ export function ContactForm() {
                     className: "!min-w-full mb-8",
                   }}
                 />
-                <Typography
-                  variant="lead"
-                  className="!text-blue-gray-500 text-sm mb-2"
-                >
-                  What are you interested on?
-                </Typography>
+                <p className="!text-blue-gray-500 text-sm mb-2">
+                  What are you interested in?
+                </p>
                 <div className="-ml-3 mb-14 ">
                   {/* @ts-ignore */}
                   <Radio
