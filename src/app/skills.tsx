@@ -10,6 +10,9 @@ import {
   DocumentTextIcon,
 } from "@heroicons/react/24/solid";
 import { SkillCard } from "@/components";
+import { motion, useAnimation } from "framer-motion"; // Add this import
+import { useEffect } from "react";
+import { useInView } from 'react-intersection-observer'; // Update import
 
 const SKILLS = [
   {
@@ -51,9 +54,26 @@ const SKILLS = [
 ];
 
 export function Skills() {
+  const control = useAnimation()
+  const [ref, inView] = useInView(); 
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } 
+    else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
+  const boxVariant = {
+    visible: { opacity: 1, scale: 1, x:0, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, scale: 0, x: 200 }
+  };
   return (
-    <section className="px-8">
-      <div className="container mx-auto mb-20 text-center">
+    <section className="px-8 mt-40">
+      <div className="container mx-auto mb-20 text-center"
+      >
         <Typography color="blue-gray" className="mb-2 font-bold uppercase">
           my skills
         </Typography>
@@ -71,7 +91,18 @@ export function Skills() {
       </div>
       <div className="container mx-auto grid grid-cols-1 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
         {SKILLS.map((props, idx) => (
-          <SkillCard key={idx} {...props} />
+          <motion.div 
+            key={idx}
+            ref={ref}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"} // Animate based on inView
+            variants={{
+              visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: idx * 0.2 } }, // Delay based on index
+              hidden: { opacity: 0, scale: 0 }
+            }} 
+          >
+            <SkillCard {...props} />
+          </motion.div>
         ))}
       </div>
     </section>

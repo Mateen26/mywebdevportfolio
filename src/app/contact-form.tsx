@@ -11,6 +11,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { EnvelopeIcon, PhoneIcon, TicketIcon } from "@heroicons/react/24/solid";
+import { motion } from "framer-motion"; // Add this import
 
 export function ContactForm() {
   return (
@@ -27,7 +28,11 @@ export function ContactForm() {
           and let&apos;s embark on a journey of innovation and success.
         </Typography>
       </div>
-      <div>
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        transition={{ duration: 1 }} // Animation on appear
+      >
         <Card shadow={true} className="container mx-auto border border-gray/50">
           <CardBody className="grid grid-cols-1 lg:grid-cols-7 md:gap-10">
             <div className="w-full col-span-3 rounded-lg h-full py-8 p-5 md:p-16 bg-gray-900">
@@ -152,7 +157,7 @@ export function ContactForm() {
             </div>
           </CardBody>
         </Card>
-      </div>
+      </motion.div>
     </section>
   );
 }

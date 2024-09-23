@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Typography, Card, CardBody, Avatar } from "@material-tailwind/react";
+import { motion } from "framer-motion"; // Add this import
 
 export function Testimonial() {
   const [active, setActive] = React.useState(3);
@@ -22,7 +23,16 @@ export function Testimonial() {
             with me. My client&apos;s satisfaction is my greatest achievement!
           </Typography>
         </div>
-        <Card color="transparent" shadow={false} className="py-8 lg:flex-row">
+        <Card 
+          shadow={false} 
+          >
+        <motion.div 
+          color="transparent" 
+          className="py-8 lg:flex-row"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ duration: 1 }} // Animation on appear
+        >
           <CardBody className="w-full lg:gap-10 h-full lg:!flex justify-between ">
             <div className="w-full mb-10 lg:mb-0">
               <Typography
@@ -91,6 +101,7 @@ export function Testimonial() {
               />
             </div>
           </CardBody>
+        </motion.div>
         </Card>
       </div>
     </section>

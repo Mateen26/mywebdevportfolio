@@ -2,6 +2,7 @@
 
 import { ProjectCard } from "@/components";
 import { Typography } from "@material-tailwind/react";
+import { motion } from "framer-motion"; // Add this import
 
 const PROJECTS = [
   {
@@ -64,7 +65,14 @@ export function Projects() {
       </div>
       <div className="container mx-auto grid grid-cols-1 gap-x-10 gap-y-20 md:grid-cols-2 xl:grid-cols-4">
         {PROJECTS.map((props, idx) => (
-          <ProjectCard key={idx} {...props} />
+          <motion.div 
+            key={idx}
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.5, delay: idx * 0.1 }} // Animation on scroll
+          >
+            <ProjectCard {...props} />
+          </motion.div>
         ))}
       </div>
     </section>
