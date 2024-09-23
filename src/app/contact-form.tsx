@@ -24,10 +24,8 @@ export function ContactForm() {
           and let&apos;s embark on a journey of innovation and success.
         </p>
       </div>
-      <motion.div 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        transition={{ duration: 1 }} // Animation on appear
+      <div 
+       
       >
         <Card shadow={true} className="container mx-auto border border-gray/50">
           <CardBody className="grid grid-cols-1 lg:grid-cols-7 md:gap-10">
@@ -147,7 +145,7 @@ export function ContactForm() {
             </div>
           </CardBody>
         </Card>
-      </motion.div>
+      </div>
     </section>
   );
 }
