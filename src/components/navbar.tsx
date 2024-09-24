@@ -1,12 +1,5 @@
 import React from "react";
 import {
-  Navbar as MTNavbar,
-  Collapse,
-  Button,
-  IconButton,
-  Typography,
-} from "@material-tailwind/react";
-import {
   RectangleStackIcon,
   UserCircleIcon,
   CommandLineIcon,
@@ -39,13 +32,12 @@ interface NavItemProps {
 function NavItem({ children, href }: NavItemProps) {
   return (
     <li>
-      <p
-        
-        color="gray"
+      <a
+        href={href}
         className="flex items-center gap-2 font-medium text-gray-900"
       >
         {children}
-      </p>
+      </a>
     </li>
   );
 }
@@ -56,16 +48,17 @@ export function Navbar() {
   const handleOpen = () => setOpen((cur) => !cur);
 
   React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpen(false)
-    );
+    const handleResize = () => {
+      if (window.innerWidth >= 960) setOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <MTNavbar shadow={false} fullWidth className="border-0 sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between">
-        <h3  className="text-lg text-gray-600 font-bold">
+    <nav className="border-0 sticky top-0 z-50 bg-white shadow">
+      <div className="container mx-auto flex items-center justify-between p-4">
+        <h3 className="text-lg text-gray-600 font-bold">
           Material Tailwind
         </h3>
         <ul className="ml-10 hidden items-center gap-8 lg:flex">
@@ -77,14 +70,12 @@ export function Navbar() {
           ))}
         </ul>
         <div className="hidden items-center gap-2 lg:flex">
-          <Button variant="text">Sign In</Button>
-          <a href="https://www.material-tailwind.com/blocks" target="_blank">
-            <Button color="gray">blocks</Button>
+          <button className="text-gray-900">Sign In</button>
+          <a href="https://www.material-tailwind.com/blocks" target="_blank" rel="noopener noreferrer">
+            <button className="bg-gray-500 text-white px-4 py-2 rounded">Blocks</button>
           </a>
         </div>
-        <IconButton
-          variant="text"
-          color="gray"
+        <button
           onClick={handleOpen}
           className="ml-auto inline-block lg:hidden"
         >
@@ -93,9 +84,9 @@ export function Navbar() {
           ) : (
             <Bars3Icon strokeWidth={2} className="h-6 w-6" />
           )}
-        </IconButton>
+        </button>
       </div>
-      <Collapse open={open}>
+      {open && (
         <div className="container mx-auto mt-3 border-t border-gray-200 px-2 pt-4">
           <ul className="flex flex-col gap-4">
             {NAV_MENU.map(({ name, icon: Icon }) => (
@@ -106,14 +97,14 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-6 mb-4 flex items-center gap-2">
-            <Button variant="text">Sign In</Button>
-            <a href="https://www.material-tailwind.com/blocks" target="_blank">
-              <Button color="gray">blocks</Button>
+            <button className="text-gray-900">Sign In</button>
+            <a href="https://www.material-tailwind.com/blocks" target="_blank" rel="noopener noreferrer">
+              <button className="bg-gray-500 text-white px-4 py-2 rounded">Blocks</button>
             </a>
           </div>
         </div>
-      </Collapse>
-    </MTNavbar>
+      )}
+    </nav>
   );
 }
 
