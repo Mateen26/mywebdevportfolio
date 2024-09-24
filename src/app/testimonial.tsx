@@ -52,6 +52,9 @@ export function Testimonial() {
                     active === 1 ? "opacity-100" : "opacity-50"
                   }`}
                   onClick={() => setActive(1)}
+                  placeholder="Placeholder" // Example of a required prop
+                  color={undefined} // Example of a required prop
+                  // Example of a required prop
                 />
                 <div className="w-[1px] h-[36px] bg-blue-gray-100"></div>
                 <Avatar
@@ -63,6 +66,9 @@ export function Testimonial() {
                     active === 2 ? "opacity-100" : "opacity-50"
                   }`}
                   onClick={() => setActive(2)}
+                  placeholder="Placeholder" // Example of a required prop
+                  color={undefined} // Example of a required prop
+                  // Example of a required prop
                 />
                 <div className="w-[1px] h-[36px] bg-blue-gray-100" />
                 <Avatar
@@ -74,6 +80,8 @@ export function Testimonial() {
                     active === 3 ? "opacity-100" : "opacity-50"
                   }`}
                   onClick={() => setActive(3)}
+                  placeholder="Placeholder" // Example of a required prop
+                  color={undefined} // Example of a required prop
                 />
               </div>
             </div>
