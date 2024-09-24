@@ -7,7 +7,7 @@ import {
   XMarkIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
-import logo from "../../public/image/mateen-rajput-high-resolution-logo.png"
+import logo from "../../public/image/mateen-rajput-high-resolution-logo.svg"
 import Image from "next/image";
 
 const NAV_MENU = [
@@ -60,8 +60,8 @@ export function Navbar() {
   return (
     <nav className=" border-0 sticky top-0 z-50 !bg-primary-black shadow">
       <div className="absolute inset-0  filter blur-sm !bg-primary-black" /> {/* Added this line */}
-      <div className="container mx-auto flex items-center justify-between px-4 relative z-10"> {/* Adjusted z-index */}
-        <Image src={logo} alt="logo" width={100} height={100}/>
+      <div className="container mx-auto flex items-center justify-between  relative z-10 pt-2 mt-5"> {/* Adjusted z-index */}
+        <Image src={logo} alt="logo" width={200} height={200}/>
         {/* <h3 className="text-lg text-primary-white font-bold">
           Material Tailwind
         </h3> */}

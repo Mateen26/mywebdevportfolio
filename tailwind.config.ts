@@ -10,7 +10,8 @@ const config: Config = withMT({
     extend:{
       colors:{
         "primary-black":"#0f0f0f",
-        "primary-white":"#c6c8c9"
+        "primary-white":"#c6c8c9",
+        "primary-brown":"#F39361"
       }
     }
   },
