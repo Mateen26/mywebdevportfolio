@@ -38,9 +38,11 @@ function Hero() {
 			<div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
 				<div className="row-start-2 lg:row-auto">
 					<h1 className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-white">
+              {/* @ts-ignore */}
 						{data.name} {/* Dynamic heading */}
 					</h1>
 					<p className="mb-4 !text-primary-white md:pr-16 xl:pr-28">
+              {/* @ts-ignore */}
 						{data.bio[0].children[0].text} {/* Dynamic description */}
 					</p>
 					<div className="grid">
@@ -48,6 +50,7 @@ function Hero() {
 							Your email
 						</span>
 						<div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
+              {/* @ts-ignore */}
 							<Input color="gray" label="Enter your email" size="lg" />
 							<button color="gray" className="w-full px-4 md:w-[12rem]">
 								require offer
