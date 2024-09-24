@@ -123,9 +123,9 @@ export function ContactForm() {
                   }}
                 />
                 <div className="w-full flex justify-end">
-                  <Button className="w-full md:w-fit" color="gray" size="md">
+                  <button className="w-full md:w-fit" color="gray" >
                     Send message
-                  </Button>
+                  </button>
                 </div>
               </form>
             </div>
