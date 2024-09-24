@@ -45,9 +45,9 @@ function Hero() {
             <div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
               {/* @ts-ignore */}
               <Input color="gray" label="Enter your email" size="lg" />
-              <Button color="gray" className="w-full px-4 md:w-[12rem]">
+              <button color="gray" className="w-full px-4 md:w-[12rem]">
                 require offer
-              </Button>
+              </button>
             </div>
           </div>
           <p className="font-normal !text-gray-500">
