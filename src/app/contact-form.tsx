@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  Card,
-  CardBody,
   Radio,
   Input,
   Textarea,
@@ -24,14 +22,9 @@ export function ContactForm() {
           and let&apos;s embark on a journey of innovation and success.
         </p>
       </div>
-      <div 
-       
-      >
-        {/* @ts-ignore */}
-        {/* className="container mx-auto border border-gray/50" */}
-        <Card shadow={true} >
-          {/* @ts-ignore */}
-          <CardBody className="grid grid-cols-1 lg:grid-cols-7 md:gap-10">
+      <div className="container mx-auto border border-gray/50">
+        <motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-7 md:gap-10">
             <div className="w-full col-span-3 rounded-lg h-full py-8 p-5 md:p-16 bg-gray-900">
               <h4 className="mb-2 text-white">
                 Contact Information
@@ -146,8 +139,8 @@ export function ContactForm() {
                 </div>
               </form>
             </div>
-          </CardBody>
-        </Card>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
