@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Avatar } from "@material-tailwind/react";
 import { motion } from "framer-motion"; // Add this import
 
 export function Testimonial() {
@@ -43,46 +42,50 @@ export function Testimonial() {
                 Marketing @ APPLE INC.
               </p>
               <div className="flex items-center gap-4">
-                <Avatar
-                  variant="rounded"
-                  src="/image/avatar1.jpg"
-                  alt="avatar1"
-                  size="sm"
-                  className={`cursor-pointer ${
+                <div
+                  className={`cursor-pointer w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300 ${
                     active === 1 ? "opacity-100" : "opacity-50"
                   }`}
                   onClick={() => setActive(1)}
-                  placeholder="Placeholder" // Example of a required prop
-                  color={undefined} // Example of a required prop
-                  // Example of a required prop
-                />
+                >
+                  <Image
+                    src="/image/avatar1.jpg"
+                    alt="avatar1"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="w-[1px] h-[36px] bg-blue-gray-100"></div>
-                <Avatar
-                  variant="rounded"
-                  src="/image/avatar2.jpg"
-                  alt="avatar2"
-                  size="sm"
-                  className={`cursor-pointer ${
+                <div
+                  className={`cursor-pointer w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300 ${
                     active === 2 ? "opacity-100" : "opacity-50"
                   }`}
                   onClick={() => setActive(2)}
-                  placeholder="Placeholder" // Example of a required prop
-                  color={undefined} // Example of a required prop
-                  // Example of a required prop
-                />
+                >
+                  <Image
+                    src="/image/avatar2.jpg"
+                    alt="avatar2"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="w-[1px] h-[36px] bg-blue-gray-100" />
-                <Avatar
-                  variant="rounded"
-                  src="/image/avatar3.jpg"
-                  alt="avatar3"
-                  size="sm"
-                  className={`cursor-pointer ${
+                <div
+                  className={`cursor-pointer w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300 ${
                     active === 3 ? "opacity-100" : "opacity-50"
                   }`}
                   onClick={() => setActive(3)}
-                  placeholder="Placeholder" // Example of a required prop
-                  color={undefined} // Example of a required prop
-                />
+                >
+                  <Image
+                    src="/image/avatar3.jpg"
+                    alt="avatar3"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
             <div className="h-[21rem] rounded-lg w-full sm:w-[18rem] shrink-0">
