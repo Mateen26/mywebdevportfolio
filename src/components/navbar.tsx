@@ -7,7 +7,7 @@ import {
   XMarkIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
-import logo from "../../public/image/mateen-rajput-high-resolution-logo.svg"
+import logo from "../../public/image/mateen-rajput-high-resolution-logo.png"
 import Image from "next/image";
 
 const NAV_MENU = [
