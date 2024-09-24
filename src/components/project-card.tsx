@@ -8,7 +8,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ img, title, desc }: ProjectCardProps) {
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <div className="border border-gray-700 rounded-lg overflow-hidden shadow-sm">
       <div className="mx-0 mt-0 mb-6 h-48">
         <Image
           src={img}
@@ -21,9 +21,9 @@ export function ProjectCard({ img, title, desc }: ProjectCardProps) {
       <div className="p-4">
         <a
           href="#"
-          className="text-blue-gray-900 transition-colors hover:text-gray-800"
+          className="text-primary-white transition-colors hover:text-gray-800"
         >
-          <h5 className="mb-2 text-lg font-semibold">
+          <h5 className="mb-2 text-lg font-semibold !text-primary-white">
             {title}
           </h5>
         </a>

@@ -55,8 +55,10 @@ const SKILLS = [
 
 export function Skills() {
   const control = useAnimation()
-  const [ref, inView] = useInView(); 
-
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+  }); 
+  console.log(inView, "inView")
   useEffect(() => {
     if (inView) {
       control.start("visible");
@@ -68,32 +70,34 @@ export function Skills() {
 
   const boxVariant = {
     visible: { opacity: 1, scale: 1, x:0, transition: { duration: 0.5 } },
-    hidden: { opacity: 0, scale: 0, x: 200 }
+    hidden: { opacity: 0, scale: 0, x: 100 }
   };
   return (
     <section className="px-8 mt-40">
-      <div className="container mx-auto mb-20 text-center">
+      <div className="container mx-auto mb-20 text-center" 
+            >
         <h2 className="mb-2 font-bold uppercase text-blue-gray">
           my skills
         </h2>
         <h1 className="mb-4 text-blue-gray">
           What I do
         </h1>
-        <p className="mx-auto w-full !text-gray-500 lg:w-10/12">
+        <p className="mx-auto w-full !text-gray-500 lg:w-10/12" 
+           
+            >
           I&apos;m not just a developer; I&apos;m a digital dreamweaver.
           Crafting immersive online experiences is not just a job but my
           calling. Discover below how I can help you.
         </p>
       </div>
-      <div className="container mx-auto grid grid-cols-1 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container mx-auto grid grid-cols-1 gap-y-10 gap-x-5 md:grid-cols-2 lg:grid-cols-3"  ref={ref}>
         {SKILLS.map((props, idx) => (
           <motion.div 
             key={idx}
-            ref={ref}
             initial="hidden"
-            animate={inView ? "visible" : "hidden"} // Animate based on inView
+            animate={inView ? "visible" : "hidden"}
             variants={{
-              visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: idx * 0.2 } }, // Delay based on index
+              visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: idx * 0.2 } },
               hidden: { opacity: 0, scale: 0 }
             }} 
           >

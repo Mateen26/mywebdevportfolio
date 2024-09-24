@@ -5,7 +5,6 @@ import { Input, Button } from "@material-tailwind/react";
 import { fetchDataFromSanity, sanityClient } from "./sanityClient";
 import { useEffect } from "react";
 import { motion } from "framer-motion"; // Add this import
-
 function Hero() {
 
 
@@ -23,23 +22,23 @@ function Hero() {
 
   return (
     <motion.header 
-      className="bg-white p-8"
+      className="bg-primary-black p-8 mt-10"
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
       transition={{ duration: 1 }} // Animation on appear
     >
       <div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
         <div className="row-start-2 lg:row-auto">
-          <h1 className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold">
+          <h1 className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-white"> {/* Updated text color */}
             Welcome to my Web <br /> Development Portfolio!
           </h1>
-          <p className="mb-4 !text-gray-500 md:pr-16 xl:pr-28">
+          <p className="mb-4 !text-primary-white md:pr-16 xl:pr-28"> {/* Updated text color */}
             I&apos;m Mateen Rajput, a passionate web developer based in USA. Here,
             you&apos;ll get a glimpse of my journey in the world of web
             development, where creativity meets functionality.
           </p>
           <div className="grid">
-            <span className="mb-2 text-gray-900 font-medium">
+            <span className="mb-2 text-primary-white font-medium"> {/* Updated text color */}
               Your email
             </span>
             <div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
@@ -50,9 +49,9 @@ function Hero() {
               </button>
             </div>
           </div>
-          <p className="font-normal !text-gray-500">
+          <p className="font-normal !text-primary-white"> {/* Updated text color */}
             Read my{" "}
-            <a href="#" className="font-medium underline transition-colors">
+            <a href="#" className="font-medium underline transition-colors text-primary-white"> {/* Updated text color */}
               Terms and Conditions
             </a>
           </p>

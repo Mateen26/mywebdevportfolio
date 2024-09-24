@@ -7,6 +7,8 @@ import {
   XMarkIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
+import logo from "../../public/image/mateen-rajput-high-resolution-logo.svg"
+import Image from "next/image";
 
 const NAV_MENU = [
   {
@@ -34,7 +36,7 @@ function NavItem({ children, href }: NavItemProps) {
     <li>
       <a
         href={href}
-        className="flex items-center gap-2 font-medium text-gray-900"
+        className="flex items-center gap-2 font-medium text-primary-white"
       >
         {children}
       </a>
@@ -56,11 +58,13 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="border-0 sticky top-0 z-50 bg-white shadow">
-      <div className="container mx-auto flex items-center justify-between p-4">
-        <h3 className="text-lg text-gray-600 font-bold">
+    <nav className=" border-0 sticky top-0 z-50 !bg-primary-black shadow">
+      <div className="absolute inset-0  filter blur-sm !bg-primary-black" /> {/* Added this line */}
+      <div className="container mx-auto flex items-center justify-between p-4 relative z-10"> {/* Adjusted z-index */}
+        <Image src={logo} alt="logo" width={100} height={100}/>
+        {/* <h3 className="text-lg text-primary-white font-bold">
           Material Tailwind
-        </h3>
+        </h3> */}
         <ul className="ml-10 hidden items-center gap-8 lg:flex">
           {NAV_MENU.map(({ name, icon: Icon, href }) => (
             <NavItem key={name} href={href}>
@@ -70,9 +74,9 @@ export function Navbar() {
           ))}
         </ul>
         <div className="hidden items-center gap-2 lg:flex">
-          <button className="text-gray-900">Sign In</button>
+          <button className="text-primary-white">Sign In</button>
           <a href="https://www.material-tailwind.com/blocks" target="_blank" rel="noopener noreferrer">
-            <button className="bg-gray-500 text-white px-4 py-2 rounded">Blocks</button>
+            <button className="bg-gray-500 text-primary-white px-4 py-2 rounded">Blocks</button>
           </a>
         </div>
         <button
@@ -97,9 +101,9 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-6 mb-4 flex items-center gap-2">
-            <button className="text-gray-900">Sign In</button>
+            <button className="text-primary-white">Sign In</button>
             <a href="https://www.material-tailwind.com/blocks" target="_blank" rel="noopener noreferrer">
-              <button className="bg-gray-500 text-white px-4 py-2 rounded">Blocks</button>
+              <button className="bg-gray-500 text-primary-white px-4 py-2 rounded">Blocks</button>
             </a>
           </div>
         </div>

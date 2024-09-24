@@ -6,7 +6,14 @@ const config: Config = withMT({
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
+  theme: {
+    extend:{
+      colors:{
+        "primary-black":"#0f0f0f",
+        "primary-white":"#c6c8c9"
+      }
+    }
+  },
   plugins: [],
 });
 
