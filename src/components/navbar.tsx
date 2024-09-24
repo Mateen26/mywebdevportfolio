@@ -75,7 +75,7 @@ export function Navbar() {
         </ul> */}
         <div className="hidden items-center gap-2 lg:flex">
           <a href="https://www.material-tailwind.com/blocks" target="_blank" rel="noopener noreferrer">
-            <button className="bg-gray-900 text-primary-white px-4 py-2 rounded">Let's Connect</button>
+            <button className="bg-gray-900 text-primary-white px-4 py-2 rounded">Let&lsquo;s Connect</button>
           </a>
         </div>
         <button
