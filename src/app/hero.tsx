@@ -7,6 +7,7 @@ import { Input } from "@material-tailwind/react";
 import { fetchDataFromSanity, sanityClient } from "./sanityClient"; // Ensure sanityClient is imported
 import imageUrlBuilder from '@sanity/image-url'; // Import the image URL builder
 import { motion } from "framer-motion"; // Add this import
+import {  HeroSectionSkeleton } from "../components/Skeletons";
 
 const builder = imageUrlBuilder(sanityClient); // Initialize the image builder
 
@@ -27,7 +28,7 @@ function Hero() {
 		fetchData();
 	}, []);
 
-	if (!data) return <div>Loading...</div>; // Loading state
+	if (!data) return <HeroSectionSkeleton/>; // Loading state
 
 	return (
 		<motion.header 
