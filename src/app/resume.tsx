@@ -1,68 +1,87 @@
 "use client";
 
-import { Typography, Button } from "@material-tailwind/react";
-import {
-  ChartBarIcon,
-  PuzzlePieceIcon,
-  CursorArrowRaysIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/24/solid";
-import { ResumeItem } from "@/components";
-import { motion } from "framer-motion"; // Add this import
+import React, { useEffect, useState } from "react";
+import { fetchDataFromSanity } from "./sanityClient";
+import { motion } from "framer-motion";
+// import { ResumeSectionSkeleton } from "../components/Skeletons";
 
-const RESUME_ITEMS = [
-  {
-    icon: ChartBarIcon,
-    children: "Bachelor of Science in Computer Science",
-  },
-  {
-    icon: PuzzlePieceIcon,
-    children: "Certified Web Developer ",
-  },
-  {
-    icon: CursorArrowRaysIcon,
-    children: "Frontend Framework Proficiency Certification",
-  },
-];
+function Resume() {
+  const [jobExperiences, setJobExperiences] = useState<any>(null);
+  console.log(jobExperiences, "jobExperiences");
+  useEffect(() => {
+    const fetchData = async () => {
+      const query = '*[_type == "jobExperience"] | order(startDate desc)';
+      const result = await fetchDataFromSanity(query);
+      setJobExperiences(result);
+    };
 
-export function Resume() {
+    fetchData();
+  }, []);
+
+  if (!jobExperiences) return "loading";
+
   return (
-    <section className="py-12 px-8 lg:py-24">
-      <div className="container max-w-screen-lg mx-auto">
+    <section className="py-12  bg-primary-black xs:px-6">
+      <div className="container  mx-auto">
         <motion.div 
-          className="col-span-1"
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          transition={{ duration: 1 }} // Animation on appear
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5 }}
         >
-          <h2 className="text-blue-gray">
-            My Resume
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary-white">
+            My Professional Journey
           </h2>
-          <p className="mb-4 mt-3 w-9/12 font-normal !text-gray-500">
-            Highly skilled and creative Web Developer with 5+ years of
-            experience in crafting visually stunning and functionally robust
-            websites and web applications.
+          <p className="text-lg mb-8 text-gray-300">
+            With {calculateExperience(jobExperiences)} years of experience in web development,
+            I've had the opportunity to work on diverse projects and grow my skillset.
           </p>
-          <button
-            className="flex items-center gap-2 text-gray-900"
-          >
-            view more
-            <ArrowRightIcon
-              strokeWidth={3}
-              className="h-3.5 w-3.5 text-gray-900"
-            />
+          <button className="inline-flex items-center text-primary-white hover:text-gray-300 transition-colors">
+            View Full Resume
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </motion.div>
-      </div>
-      <div className="container max-w-screen-lg mx-auto">
-        <div className="col-span-1 grid gap-y-6 lg:ml-auto pr-0 lg:pr-12 xl:pr-32">
-          {RESUME_ITEMS.map((props, idx) => (
-            <ResumeItem key={idx} {...props} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {Array.isArray(jobExperiences) && jobExperiences.map((job: any, idx: number) => (
+            <motion.div
+              key={job._id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="bg-primary-gray p-6 rounded-lg shadow-lg border border-primary-brown "
+            >
+              <h3 className="text-2xl font-semibold mb-2 text-primary-white">{job.position}</h3>
+              <h4 className="text-lg font-medium mb-4 text-primary-brown">{job.companyName}</h4>
+              <div className="flex items-center gap-2 mb-4 text-primary-white">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>
+                  {formatDate(job.startDate)} - {job.isPresent ? 'Present' : formatDate(job.endDate)}
+                </span>
+              </div>
+              <p className="mb-8 text-gray-300">{job.description}</p>
+              
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
+}
+
+function calculateExperience(jobs: any[]) {
+  if (!jobs || jobs.length === 0) return 0;
+  const earliestStartDate = Math.min(...jobs.map((job: any) => new Date(job.startDate).getTime()));
+  const latestEndDate = Math.max(...jobs.map((job: any) => job.endDate ? new Date(job.endDate).getTime() : Date.now()));
+  return ((latestEndDate - earliestStartDate) / (1000 * 60 * 60 * 24 * 365)).toFixed(1);
+}
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 }
 
 export default Resume;

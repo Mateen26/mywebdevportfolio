@@ -1,51 +1,51 @@
 // @ts-nocheck
 "use client";
 
-import React, { useEffect, useState } from "react"; // Import useState
+import React, { useEffect, useState } from "react"; 
 import Image from "next/image";
 import { Input } from "@material-tailwind/react";
-import { fetchDataFromSanity, sanityClient } from "./sanityClient"; // Ensure sanityClient is imported
-import imageUrlBuilder from '@sanity/image-url'; // Import the image URL builder
-import { motion } from "framer-motion"; // Add this import
+import { fetchDataFromSanity, sanityClient } from "./sanityClient"; 
+import imageUrlBuilder from '@sanity/image-url'; 
+import { motion } from "framer-motion"; 
 import {  HeroSectionSkeleton } from "../components/Skeletons";
 
-const builder = imageUrlBuilder(sanityClient); // Initialize the image builder
+const builder = imageUrlBuilder(sanityClient); 
 
 function urlFor(source :any) {
-  return builder.image(source); // Function to generate image URL
+  return builder.image(source); 
 }
 
 function Hero() {
-	const [data, setData] = useState(null); // State to hold fetched data
+	const [data, setData] = useState(null); 
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const query = '*[_type == "author"]'; // Adjust query as needed
+			const query = '*[_type == "author"]';
 			const result = await fetchDataFromSanity(query);
-			setData(result[0]); // Assuming you want the first author
+			setData(result[0]); 
 		};
 
 		fetchData();
 	}, []);
 
-	if (!data) return <HeroSectionSkeleton/>; // Loading state
+	if (!data) return <HeroSectionSkeleton/>; 
 
 	return (
 		<motion.header 
 			className="bg-primary-black p-8"
 			initial={{ opacity: 0 }} 
 			animate={{ opacity: 1 }} 
-			transition={{ duration: 1 }} // Animation on appear
+			transition={{ duration: 1 }}
 		>
 			<div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
 				<div className="row-start-2 lg:row-auto">
 					<h1 className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-white">
               {/* @ts-ignore */}
-						{data.name} {/* Dynamic heading */}
+						{data.name} 
 					</h1>
 					<p className="mb-4 !text-primary-white md:pr-16 xl:pr-28">
               {/* @ts-ignore */}
-						{data.bio[0].children[0].text} {/* Dynamic description */}
+						{data.bio[0].children[0].text} 
 					</p>
 					<div className="grid">
 						<span className="mb-2 text-primary-white font-medium">
@@ -70,7 +70,7 @@ function Hero() {
 					width={1024}
 					height={1024}
 					alt="team work"
-					src={urlFor(data?.image?.asset).url()} // Use the image builder to get the URL
+					src={urlFor(data?.image?.asset).url()} 
 					className="h-[36rem] w-full rounded-xl object-cover"
 				/>
 			</div>
