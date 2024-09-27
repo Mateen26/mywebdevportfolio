@@ -21,7 +21,7 @@ function Resume() {
   if (!jobExperiences) return "loading";
 
   return (
-    <section className="py-12  bg-primary-black xs:px-6">
+    <section className="py-12  bg-primary-black px-6">
       <div className="container  mx-auto">
         <motion.div 
           className="text-center mb-12"

@@ -30,7 +30,7 @@ export function ProjectCard({ img, title, desc }: ProjectCardProps) {
         <p className="mb-6 font-normal !text-gray-500">
           {desc}
         </p>
-        <button className="bg-gray-500 text-white text-sm px-4 py-2 rounded">
+        <button className="bg-primary-brown text-white text-sm px-4 py-2 rounded">
           see details
         </button>
       </div>

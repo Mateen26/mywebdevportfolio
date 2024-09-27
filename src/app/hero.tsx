@@ -39,7 +39,7 @@ function Hero() {
 		>
 			<div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
 				<div className="row-start-2 lg:row-auto">
-					<h1 className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-white">
+					<h1 className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-brown">
               {/* @ts-ignore */}
 						{data.name} 
 					</h1>
@@ -48,7 +48,7 @@ function Hero() {
 						{data.bio[0].children[0].text} 
 					</p>
 					<div className="grid">
-						<span className="mb-2 text-primary-white font-medium">
+						<span className="mb-2 text-primary-brown font-medium">
 							Your email
 						</span>
 						<div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
@@ -61,7 +61,7 @@ function Hero() {
 					</div>
 					<p className="font-normal !text-primary-white">
 						Read my{" "}
-						<a href="#" className="font-medium underline transition-colors text-primary-white">
+						<a href="#" className="font-medium underline transition-colors text-primary-brown">
 							Terms and Conditions
 						</a>
 					</p>

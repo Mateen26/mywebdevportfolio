@@ -13,7 +13,7 @@ export function SkillCard({ icon: Icon, title, children }: SkillCardProps) {
         <div className="mx-auto mb-6 grid h-12 w-12 place-items-center rounded-full bg-gray-900 p-2.5 text-white shadow">
           <Icon className="h-6 w-6" strokeWidth={2} />
         </div>
-        <h5 className="mb-2 text-blue-gray">
+        <h5 className="mb-2 text-primary-brown">
           {title}
         </h5>
         <p className="px-8 font-normal !text-gray-500">

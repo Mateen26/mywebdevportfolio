@@ -58,7 +58,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className=" border-0 sticky top-0 z-50 !bg-primary-black shadow py-4">
+    <nav className=" border-0 sticky top-0 z-50 !bg-primary-black shadow py-4 px-6">
       <div className="absolute inset-0  filter blur-sm !bg-primary-black" /> {/* Added this line */}
       <div className="container mx-auto flex items-center justify-between  relative z-10  mt-2"> {/* Adjusted z-index */}
         <Image src={logo} alt="logo" width={200} height={200}/>

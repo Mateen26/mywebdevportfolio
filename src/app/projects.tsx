@@ -51,7 +51,7 @@ export function Projects() {
   return (
     <section className="py-28 px-8">
       <div className="container mx-auto mb-20 text-center">
-        <h2 className="mb-4 text-blue-gray">
+        <h2 className="mb-4 text-primary-brown">
           My Projects
         </h2>
         <p className="mx-auto w-full px-4 font-normal !text-gray-500 lg:w-6/12">

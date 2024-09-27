@@ -2,7 +2,7 @@ import React from 'react';
 
 export const HeroSectionSkeleton = () => {
   return (
-    <div className="container mt-10 mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
+    <div className="container mt-10 mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2 px-6">
       <div className="row-start-2 lg:row-auto">
         <div className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold bg-gray-600 animate-pulse h-10 w-3/4"></div>
         <div className="mb-4 !text-gray-600 md:pr-16 xl:pr-28 bg-gray-600 animate-pulse h-6 w-full"></div>
