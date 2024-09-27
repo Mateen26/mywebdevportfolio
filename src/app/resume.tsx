@@ -34,7 +34,7 @@ function Resume() {
           </h2>
           <p className="text-lg mb-8 text-gray-300">
             With {calculateExperience(jobExperiences)} years of experience in web development,
-            I've had the opportunity to work on diverse projects and grow my skillset.
+            I&apos;ve had the opportunity to work on diverse projects and grow my skillset.
           </p>
           <button className="inline-flex items-center text-primary-white hover:text-gray-300 transition-colors">
             View Full Resume
