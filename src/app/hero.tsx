@@ -7,7 +7,7 @@ import { Input } from "@material-tailwind/react";
 import { fetchDataFromSanity, sanityClient } from "./sanityClient"; 
 import imageUrlBuilder from '@sanity/image-url'; 
 import { motion } from "framer-motion"; 
-import {  HeroSectionSkeleton } from "../components/Skeletons";
+import { HeroSectionSkeleton } from "../components/Skeletons";
 
 const builder = imageUrlBuilder(sanityClient); 
 
@@ -38,16 +38,31 @@ function Hero() {
 			transition={{ duration: 1 }}
 		>
 			<div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
-				<div className="row-start-2 lg:row-auto">
-					<h1 className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-brown">
+				<div className="row-start-2 lg:row-auto relative overflow-hidden">
+					<motion.h1 
+						className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-brown"
+						initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+						animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+						transition={{ duration: 1, delay: 0.2 }}
+					>
               {/* @ts-ignore */}
 						{data.name} 
-					</h1>
-					<p className="mb-4 !text-primary-white md:pr-16 xl:pr-28">
+					</motion.h1>
+					<motion.p 
+						className="mb-4 !text-primary-white md:pr-16 xl:pr-28"
+						initial={{ opacity: 0, y: -50 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1 }}
+					>
               {/* @ts-ignore */}
 						{data.bio[0].children[0].text} 
-					</p>
-					<div className="grid">
+					</motion.p>
+					<motion.div 
+						className="grid"
+						initial={{ opacity: 0, filter: "blur(10px)" }}
+						animate={{ opacity: 1, filter: "blur(0px)" }}
+						transition={{ duration: 1, delay: 0.5 }}
+					>
 						<span className="mb-2 text-primary-brown font-medium">
 							Your email
 						</span>
@@ -58,21 +73,32 @@ function Hero() {
 								require offer
 							</button>
 						</div>
-					</div>
-					<p className="font-normal !text-primary-white">
+					</motion.div>
+					<motion.p 
+						className="font-normal !text-primary-white"
+						initial={{ opacity: 0, filter: "blur(10px)" }}
+						animate={{ opacity: 1, filter: "blur(0px)" }}
+						transition={{ duration: 1, delay: 0.5 }}
+					>
 						Read my{" "}
 						<a href="#" className="font-medium underline transition-colors text-primary-brown">
 							Terms and Conditions
-						</a>
-					</p>
+							</a>
+					</motion.p>
 				</div>
-				<Image
-					width={1024}
-					height={1024}
-					alt="team work"
-					src={urlFor(data?.image?.asset).url()} 
-					className="h-[36rem] w-full rounded-xl object-cover"
-				/>
+				<motion.div
+					initial={{ scale: 0.8, filter: "blur(10px)" }}
+					animate={{ scale: 1, filter: "blur(0px)" }}
+					transition={{ duration: 1 }}
+				>
+					<Image
+						width={1024}
+						height={1024}
+						alt="team work"
+						src={urlFor(data?.image?.asset).url()} 
+						className="h-[36rem] w-full rounded-xl object-cover"
+					/>
+				</motion.div>
 			</div>
 		</motion.header>
 	);
