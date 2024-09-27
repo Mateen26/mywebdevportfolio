@@ -78,7 +78,7 @@ export function Navbar() {
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1 }}
           >
-            <button className="bg-gray-900 text-primary-white px-4 py-2 rounded">Let&lsquo;s Connect</button>
+            <button className="bg-primary-brown text-white px-4 py-2 rounded">Let&lsquo;s Connect</button>
           </motion.a>
         </div>
         <button
