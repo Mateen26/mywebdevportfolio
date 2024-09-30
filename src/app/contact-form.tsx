@@ -36,19 +36,13 @@ export function ContactForm() {
               <div className="flex gap-5">
                 <PhoneIcon className="h-6 w-6 text-primary-brown" />
                 <h6 className="mb-2 text-primary-brown">
-                  +1(424) 535 3523
+                  +92 343-3287156
                 </h6>
               </div>
               <div className="flex my-2 gap-5">
                 <EnvelopeIcon className="h-6 w-6 text-primary-brown" />
                   <h6 className="mb-2 text-primary-brown">
-                  hello@mail.com
-                </h6>
-              </div>
-              <div className="flex mb-10 gap-5">
-                <TicketIcon className="h-6 w-6 text-white" />
-                <h6 className="mb-2 text-white">
-                  Open Support Ticket
+                  mateenrajput55@gmail.com
                 </h6>
               </div>
            
@@ -67,6 +61,10 @@ export function ContactForm() {
                     containerProps={{
                       className: "!min-w-full mb-3 md:mb-0",
                     }}
+                    className="text-primary-brown "
+                    labelProps={{
+                      className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
+                    }}
                   />
                   {/* @ts-ignore */}
                   <Input
@@ -79,6 +77,10 @@ export function ContactForm() {
                     containerProps={{
                       className: "!min-w-full",
                     }}
+                    className="text-primary-brown"
+                    labelProps={{
+                      className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
+                    }}
                   />
                 </div>
                 {/* @ts-ignore */}
@@ -87,40 +89,75 @@ export function ContactForm() {
                   size="lg"
                   variant="static"
                   label="Email"
-                  name="first-name"
+                  name="email"
                   placeholder="eg. lucas@mail.com"
                   containerProps={{
                     className: "!min-w-full mb-8",
                   }}
+                  className="text-primary-brown"
+                  labelProps={{
+                    className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
+                  }}
                 />
-                <p className="!text-blue-gray-500 text-sm mb-2">
+                <p className="!text-primary-brown text-sm mb-2">
                   What are you interested in?
                 </p>
                 <div className="-ml-3 mb-14 ">
                   {/* @ts-ignore */}
                   <Radio
-                    color="gray"
+                    color="brown"
                     name="type"
                     label="Design"
                     defaultChecked
+                    className="text-primary-brown"
+                    labelProps={{
+                      className: "!text-primary-white peer-checked:!text-primary-brown"
+                    }}
                   />
                   {/* @ts-ignore */}
-                  <Radio color="gray" name="type" label="Development" />
+                  <Radio 
+                    color="brown" 
+                    name="type" 
+                    label="Development"
+                    className="text-primary-brown"
+                    labelProps={{
+                      className: "!text-primary-white peer-checked:!text-primary-brown"
+                    }}
+                  />
                   {/* @ts-ignore */}
-                  <Radio color="gray" name="type" label="Support" />
+                  <Radio 
+                    color="brown" 
+                    name="type" 
+                    label="Support"
+                    className="text-primary-brown"
+                    labelProps={{
+                      className: "!text-primary-white peer-checked:!text-primary-brown"
+                    }}
+                  />
                   {/* @ts-ignore */}
-                  <Radio color="gray"  name="type" label="Other" />
+                  <Radio 
+                    color="brown"  
+                    name="type" 
+                    label="Other"
+                    className="text-primary-brown"
+                    labelProps={{
+                      className: "!text-primary-white peer-checked:!text-primary-brown"
+                    }}
+                  />
                 </div>
                 {/* @ts-ignore */}
                 <Textarea
                   className="text-primary-brown"
-                  color="gray"
+                  color="brown"
                   size="lg"
                   variant="static"
                   label="Your Message"
-                  name="first-name"
+                  name="message"
                   containerProps={{
                     className: "!min-w-full mb-8",
+                  }}
+                  labelProps={{
+                    className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
                   }}
                 />
                 <div className="w-full flex justify-end">
