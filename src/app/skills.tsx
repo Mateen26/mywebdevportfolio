@@ -73,7 +73,7 @@ export function Skills() {
     hidden: { opacity: 0, scale: 0, x: 100 }
   };
   return (
-    <section className="px-8 mt-40">
+    <section className="px-8 mt-20">
       <div className="container mx-auto mb-20 text-center" 
             >
         <h2 className="mb-2 font-bold uppercase text-primary-brown">
@@ -101,7 +101,7 @@ export function Skills() {
               hidden: { opacity: 0, scale: 0 }
             }} 
           >
-            <SkillCard {...props} />
+            <SkillCard {...props} inView={inView }/>
           </motion.div>
         ))}
       </div>

@@ -6,23 +6,20 @@ import { Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion"; // Add this import
 
 const CLIENTS = [
-  "coinbase",
-  "spotify",
-  "pinterest",
-  "google",
-  "amazon",
-  "netflix",
+  "UNODC.webp",
+  "cipher.png",
+  "travelot.png",
+  "deltacron.png"
 ];
 
 export function Clients() {
   return (
-    <section className="px-8 py-28">
+    <section className="px-8 py-20">
       <div className="container mx-auto text-center">
         <h6 
           className="mb-8" 
-          // Removed placeholder prop
         >
-          My awesome clients
+          My Employers 
         </h6>
         <div className="flex flex-wrap items-center justify-center gap-6">
           {CLIENTS.map((logo, key) => (
@@ -35,13 +32,14 @@ export function Clients() {
               viewport={{
                 margin: "-100px",
               }}
+              className="lg:px-20"
             >
               <Image
                 alt={logo}
                 width={768}
                 height={768}
                 className="w-40"
-                src={`/logos/logo-${logo}.svg`}
+                src={`/logos/logo-${logo}`}
               />
             </motion.div>
           ))}
