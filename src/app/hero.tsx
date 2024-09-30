@@ -67,7 +67,7 @@ function Hero() {
 						>
 							<Typist avgTypingDelay={2} >
 								{/* @ts-ignore */}
-								I'm <span className="text-primary-brown">Mateen Rajput</span>, {data.bio[0].children[0].text}
+								I'm <span className="text-primary-brown">Mateen Rajput</span>&lsquo; {data.bio[0].children[0].text}
 							</Typist>
 						</motion.div>
 					)}
