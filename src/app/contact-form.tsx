@@ -9,8 +9,52 @@ import {
 } from "@material-tailwind/react";
 import { EnvelopeIcon, PhoneIcon, TicketIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion"; // Add this import
+import React, { useState } from 'react';
 
 export function ContactForm() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    type: 'Design',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('Message sent successfully!');
+        setFormData({ firstName: '', lastName: '', email: '', type: 'Design', message: '' });
+      } else {
+        setSubmitStatus('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="px-8 py-16">
       <div className="container mx-auto mb-20 text-center">
@@ -48,7 +92,7 @@ export function ContactForm() {
            
             </div>
             <div className="w-full mt-8 md:mt-0 md:px-10 col-span-4 h-full p-5">
-              <form action="#">
+              <form onSubmit={handleSubmit}>
                 <div className="mb-8 grid gap-4 lg:grid-cols-2">
                   {/* @ts-ignore */}
                   <Input
@@ -56,7 +100,7 @@ export function ContactForm() {
                     size="lg"
                     variant="static"
                     label="First Name"
-                    name="first-name"
+                    name="firstName"
                     placeholder="eg. Lucas"
                     containerProps={{
                       className: "!min-w-full mb-3 md:mb-0",
@@ -65,6 +109,8 @@ export function ContactForm() {
                     labelProps={{
                       className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
                     }}
+                    value={formData.firstName}
+                    onChange={handleChange}
                   />
                   {/* @ts-ignore */}
                   <Input
@@ -72,7 +118,7 @@ export function ContactForm() {
                     size="lg"
                     variant="static"
                     label="Last Name"
-                    name="last-name"
+                    name="lastName"
                     placeholder="eg. Jones"
                     containerProps={{
                       className: "!min-w-full",
@@ -81,6 +127,8 @@ export function ContactForm() {
                     labelProps={{
                       className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
                     }}
+                    value={formData.lastName}
+                    onChange={handleChange}
                   />
                 </div>
                 {/* @ts-ignore */}
@@ -98,6 +146,8 @@ export function ContactForm() {
                   labelProps={{
                     className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
                   }}
+                  value={formData.email}
+                  onChange={handleChange}
                 />
                 <p className="!text-primary-brown text-sm mb-2">
                   What are you interested in?
@@ -159,11 +209,18 @@ export function ContactForm() {
                   labelProps={{
                     className: "!text-primary-white before:border-primary-white after:border-primary-white peer-focus:!text-primary-brown peer-focus:before:!border-primary-brown peer-focus:after:!border-primary-brown"
                   }}
+                  value={formData.message}
+                  onChange={handleChange}
                 />
                 <div className="w-full flex justify-end">
-                  <button className="w-full md:w-fit text-white bg-primary-brown  px-2 py-2 rounded-sm" color="gray" >
-                    Send message
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full md:w-fit text-white bg-primary-brown px-2 py-2 rounded-sm"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send message'}
                   </button>
+                  {submitStatus && <p className="mt-4 text-center">{submitStatus}</p>}
                 </div>
               </form>
             </div>
