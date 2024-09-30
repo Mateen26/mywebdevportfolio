@@ -10,6 +10,7 @@ import {
 import logo from "../../public/image/mateen-rajput-high-resolution-logo.svg"
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion"; // Add this import
+import { Link, animateScroll as scroll } from 'react-scroll'; // Updated import
 
 const NAV_MENU = [
   {
@@ -58,6 +59,26 @@ export function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const handleScrollToContact = () => {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      scroll.scrollTo(contactForm.offsetTop, {
+        duration: 1200,
+        delay: 0,
+        smooth: 'easeInQuad',
+      });
+      setOpen(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    scroll.scrollToTop({
+      duration: 1500,
+      delay: 0,
+      smooth: 'easeInOutQuart'
+    });
+  };
+
   return (
     <nav className=" border-0 sticky top-0 z-50 !bg-primary-black shadow py-4 px-6">
       <div className="absolute inset-0  filter blur-sm !bg-primary-black" />
@@ -67,19 +88,25 @@ export function Navbar() {
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1 }}
         >
-          <Image src={logo} alt="logo" width={200} height={200}/>
+          <Image 
+            src={logo} 
+            alt="logo" 
+            width={200} 
+            height={200} 
+            onClick={scrollToTop}
+            style={{ cursor: 'pointer' }}
+          />
         </motion.div>
         <div className="hidden items-center gap-2 lg:flex">
-          <motion.a 
-            href="https://www.material-tailwind.com/blocks" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <motion.div
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1 }}
           >
-            <button className="bg-primary-brown text-white px-4 py-2 rounded">Let&lsquo;s Connect</button>
-          </motion.a>
+            <button onClick={handleScrollToContact} className="bg-primary-brown text-white px-4 py-2 rounded cursor-pointer">
+              Let&lsquo;s Connect
+            </button>
+          </motion.div>
         </div>
         <button
           onClick={handleOpen}
@@ -110,14 +137,12 @@ export function Navbar() {
               ))}
             </ul>
             <div className="mt-6 mb-4 flex flex-col items-start gap-4">
-              <a 
-                href="https://www.material-tailwind.com/blocks" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full"
+              <button
+                onClick={handleScrollToContact}
+                className="bg-gray-900 text-primary-white px-4 py-2 rounded w-full cursor-pointer"
               >
-                <button className="bg-gray-900 text-primary-white px-4 py-2 rounded w-full">Let&lsquo;s Connect</button>
-              </a>
+                Let&lsquo;s Connect
+              </button>
             </div>
           </motion.div>
         )}

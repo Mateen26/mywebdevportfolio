@@ -7,43 +7,43 @@ import { motion } from "framer-motion"; // Add this import
 const PROJECTS = [
   {
     img: "/image/blog-1.svg",
-    title: "Mobile App Development",
-    desc: "Mobile app designed to help users discover and explore local restaurants and cuisines.",
+    title: "React Native Mobile App",
+    desc: "Developed a cross-platform mobile app using React Native for seamless user experience on both iOS and Android.",
   },
   {
     img: "/image/blog2.svg",
-    title: "Landing Page Development",
-    desc: "Promotional landing page for a  fitness website Summer Campaign. Form development included.",
+    title: "NextJS E-commerce Platform",
+    desc: "Built a high-performance e-commerce website using NextJS, integrating Typescript for improved code quality.",
   },
   {
     img: "/image/blog3.svg",
-    title: "Mobile App Development",
-    desc: "Mobile app designed to help users discover and explore local restaurants and cuisines.",
+    title: "Tailwind CSS Portfolio",
+    desc: "Designed and implemented a responsive portfolio website using Tailwind CSS for rapid UI development.",
   },
   {
     img: "/image/blog4.svg",
-    title: "E-commerce development",
-    desc: "Ecommerce website offering  access to the latest and greatest gadgets and accessories.",
+    title: "Firebase Real-time Chat App",
+    desc: "Created a real-time chat application using ReactJS and Firebase, showcasing serverless development skills.",
   },
   {
     img: "/image/blog-1.svg",
-    title: "Mobile App Development",
-    desc: "Mobile app designed to help users discover and explore local restaurants and cuisines.",
+    title: "Supabase-powered Blog",
+    desc: "Developed a full-stack blog platform using Supabase for backend services and NextJS for the frontend.",
   },
   {
     img: "/image/blog2.svg",
-    title: "Landing Page Development",
-    desc: "Promotional landing page for a  fitness website Summer Campaign. Form development included.",
+    title: "Sanity.io Headless CMS",
+    desc: "Implemented a content management system using Sanity.io, integrated with a ReactJS frontend for dynamic content.",
   },
   {
     img: "/image/blog3.svg",
-    title: "Mobile App Development",
-    desc: "Mobile app designed to help users discover and explore local restaurants and cuisines.",
+    title: "Agile Project Management Dashboard",
+    desc: "Built a project management dashboard using ReactJS and integrated with JIRA API for agile workflow visualization.",
   },
   {
     img: "/image/blog4.svg",
-    title: "E-commerce development",
-    desc: "Ecommerce website offering  access to the latest and greatest gadgets and accessories.",
+    title: "Webflow to React Migration",
+    desc: "Successfully migrated a Webflow-designed website to a custom ReactJS application, improving performance and maintainability.",
   },
 ];
 
