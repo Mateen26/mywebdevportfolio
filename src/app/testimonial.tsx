@@ -11,11 +11,11 @@ export function Testimonial() {
     <section className="py-12 px-8 lg:py-24">
       <div className="container max-w-screen-lg mx-auto">
         <div className="container mx-auto mb-20 text-center">
-          <h2 className="mb-4 text-blue-gray">
-            What Clients Say
+          <h2 className="mb-4 text-primary-brown text-2xl font-bold">
+            What Employers Say
           </h2>
           <p className="mx-auto w-full px-4 font-normal !text-gray-500 lg:w-8/12">
-            Discover what clients have to say about their experiences working
+            Discover what Employers have to say about their experiences working
             with me. My client&apos;s satisfaction is my greatest achievement!
           </p>
         </div>
@@ -23,7 +23,7 @@ export function Testimonial() {
           className="py-8 lg:flex-row"
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
-          transition={{ duration: 1 }} // Animation on appear
+          transition={{ duration: 1 }}
         >
           <div className="w-full lg:gap-10 h-full lg:flex justify-between">
             <div className="w-full mb-10 lg:mb-0">

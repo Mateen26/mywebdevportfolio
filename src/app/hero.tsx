@@ -7,9 +7,9 @@ import { Input } from "@material-tailwind/react";
 import { fetchDataFromSanity, sanityClient } from "./sanityClient"; 
 import imageUrlBuilder from '@sanity/image-url'; 
 import { motion } from "framer-motion"; 
-import { HeroSectionSkeleton } from "../components/Skeletons";
 import 'react-typist/dist/Typist.css';
 import Typist from 'react-typist';
+import { HeroSectionSkeleton, WindAnimation } from '../components/Skeletons';
 
 const builder = imageUrlBuilder(sanityClient); 
 
@@ -20,62 +20,70 @@ function urlFor(source :any) {
 function Hero() {
 	const [data, setData] = useState(null);
 	const [showBio, setShowBio] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const query = '*[_type == "author"]';
 			const result = await fetchDataFromSanity(query);
 			setData(result[0]); 
+			
+			// Reduce the loading time to 1 second
+			// setTimeout(() => {
+				setLoading(false);
+			// }, 1000);
 		};
 
 		fetchData();
 	}, []);
 
-	if (!data) return <HeroSectionSkeleton/>; 
+	if (loading) {
+		return <HeroSectionSkeleton />;
+	}
 
 	return (
 		<motion.header 
 			className="bg-primary-black p-8 lg:mt-20"
 			initial={{ opacity: 0 }} 
 			animate={{ opacity: 1 }} 
-			transition={{ duration: 1 }}
+			transition={{ duration: 0.5 }}
 		>
 			<div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
 				<div className="row-start-2 lg:row-auto relative overflow-hidden">
 					<motion.div 
 						className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-brown"
-						initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-						animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-						transition={{ duration: 1, delay: 0.2 }}
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5, delay: 0.2 }}
 					>
-						<Typist onTypingDone={() => setShowBio(true)}>
+						<Typist onTypingDone={() => setShowBio(true)} avgTypingDelay={40} stdTypingDelay={20}>
 							Welcome to my Web Development
-							<Typist.Backspace count={0} delay={200} />
+							<Typist.Backspace count={0} delay={100} />
 							<span> Website</span>
-							<Typist.Backspace count={7} delay={400} />
+							<Typist.Backspace count={7} delay={200} />
 							<span> WebApp</span>
-							<Typist.Backspace count={6} delay={800} />
+							<Typist.Backspace count={6} delay={400} />
 							<span> Portfolio</span>
 						</Typist>
 					</motion.div>
 					{showBio && (
 						<motion.div 
 							className="mb-4 !text-primary-white md:pr-16 xl:pr-28"
-							initial={{ opacity: 0, y: -50 }}
+							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 1 }}
+							transition={{ duration: 0.5 }}
 						>
-							<Typist avgTypingDelay={2} >
+							<Typist avgTypingDelay={20} stdTypingDelay={10}>
 								{/* @ts-ignore */}
-								I&lsquo;m <span className="text-primary-brown">Mateen Rajput</span>, {data.bio[0].children[0].text}
+								I&lsquo;m <span className="text-primary-brown">Mateen Rajput</span>, {data?.bio[0]?.children[0]?.text}
 							</Typist>
 						</motion.div>
 					)}
 					<motion.div 
 						className="grid"
-						initial={{ opacity: 0, filter: "blur(10px)" }}
-						animate={{ opacity: 1, filter: "blur(0px)" }}
-						transition={{ duration: 1, delay: 0.5 }}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{ duration: 0.5 }}
 					>
 						<span className="mb-2 text-primary-brown font-medium">
 							Your email
@@ -90,9 +98,9 @@ function Hero() {
 					</motion.div>
 					<motion.p 
 						className="font-normal !text-primary-white"
-						initial={{ opacity: 0, filter: "blur(10px)" }}
-						animate={{ opacity: 1, filter: "blur(0px)" }}
-						transition={{ duration: 1, delay: 0.5 }}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{ duration: 0.5 }}
 					>
 						Read my{" "}
 						<a href="#" className="font-medium underline transition-colors text-primary-brown">
@@ -101,9 +109,9 @@ function Hero() {
 					</motion.p>
 				</div>
 				<motion.div
-					initial={{ scale: 0.8, filter: "blur(10px)" }}
-					animate={{ scale: 1, filter: "blur(0px)" }}
-					transition={{ duration: 1 }}
+					initial={{ scale: 0.8 }}
+					animate={{ scale: 1 }}
+					transition={{ duration: 0.5 }}
 				>
 					<Image
 						width={1024}

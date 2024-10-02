@@ -76,7 +76,7 @@ export function Skills() {
     <section className="px-8 mt-20">
       <div className="container mx-auto mb-20 text-center" 
             >
-        <h2 className="mb-2 font-bold uppercase text-primary-brown">
+        <h2 className="mb-2 font-bold uppercase text-primary-brown text-2xl ">
           my skills
         </h2>
         <h1 className="mb-4 text-blue-gray">

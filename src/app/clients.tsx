@@ -17,7 +17,7 @@ export function Clients() {
     <section className="px-8 py-20">
       <div className="container mx-auto text-center">
         <h6 
-          className="mb-8" 
+          className="mb-8 text-2xl font-bold text-primary-brown" 
         >
           My Employers 
         </h6>

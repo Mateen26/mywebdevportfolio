@@ -58,8 +58,8 @@ export function ContactForm() {
   return (
     <section id="contact-form" className="px-8 py-16">
       <div className="container mx-auto mb-20 text-center">
-        <h1 className="mb-4 text-primary-brown">
-          Contact Us
+        <h1 className="mb-4 text-primary-brown text-2xl font-bold">
+          Contact Me
         </h1>
         <p className="mx-auto w-full lg:w-5/12 !text-gray-500">
           Ready to get started? Feel free to reach out through the contact form,

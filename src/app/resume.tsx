@@ -29,7 +29,7 @@ function Resume() {
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary-white">
+          <h2 className="lg:text-4xl font-bold mb-4 text-primary-brown text-2xl">
             My Professional Journey
           </h2>
           <p className="text-lg mb-8 text-gray-300">
