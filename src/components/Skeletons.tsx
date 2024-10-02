@@ -83,3 +83,45 @@ export const ProjectsSkeleton = () => {
     </section>
   );
 };
+
+
+// ... existing imports and components ...
+
+export const TestimonialSkeleton = () => {
+  return (
+    <section className="py-12 px-8 lg:py-24">
+      <div className="container max-w-screen-lg mx-auto">
+        <div className="container mx-auto mb-20 text-center">
+          <div className="mb-4 h-8 w-48 mx-auto bg-gray-800 animate-pulse rounded"></div>
+          <div className="mx-auto w-full px-4 lg:w-8/12">
+            <div className="h-4 bg-gray-800 animate-pulse rounded mb-2"></div>
+            <div className="h-4 bg-gray-800 animate-pulse rounded"></div>
+          </div>
+        </div>
+        <div className="py-8 lg:flex-row">
+          <div className="w-full lg:gap-10 h-full lg:flex justify-between">
+            <div className="w-full mb-10 lg:mb-0">
+              <div className="mb-4 h-6 w-48 bg-gray-800 animate-pulse rounded"></div>
+              <div className="mb-3 w-full lg:w-8/12">
+                <div className="h-4 bg-gray-800 animate-pulse rounded mb-2"></div>
+                <div className="h-4 bg-gray-800 animate-pulse rounded mb-2"></div>
+                <div className="h-4 bg-gray-800 animate-pulse rounded"></div>
+              </div>
+              <div className="mb-0.5 h-5 w-32 bg-gray-800 animate-pulse rounded"></div>
+              <div className="mb-5 h-4 w-40 bg-gray-800 animate-pulse rounded"></div>
+              <div className="flex items-center gap-4">
+                {[...Array(3)].map((_, index) => (
+                  <React.Fragment key={index}>
+                    <div className="w-12 h-12 rounded-full bg-gray-800 animate-pulse"></div>
+                    {index < 2 && <div className="w-[1px] h-[36px] bg-gray-800"></div>}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+            <div className="h-[21rem] rounded-lg w-full sm:w-[18rem] shrink-0 bg-gray-800 animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
