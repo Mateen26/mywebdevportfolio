@@ -51,3 +51,35 @@ export const HeroSectionSkeleton = () => {
     </div>
   );
 };
+
+
+export const ProjectsSkeleton = () => {
+  return (
+    <section className="py-28 px-8">
+      <div className="container mx-auto mb-20 text-center">
+        <div className="mb-4 h-8 w-48 mx-auto bg-gray-800 animate-pulse rounded"></div>
+        <div className="mx-auto w-full px-4 lg:w-6/12">
+          <div className="h-4 bg-gray-800 animate-pulse rounded mb-2"></div>
+          <div className="h-4 bg-gray-800 animate-pulse rounded mb-2"></div>
+          <div className="h-4 bg-gray-800 animate-pulse rounded"></div>
+        </div>
+      </div>
+      <div className="container mx-auto grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
+        {[...Array(8)].map((_, idx) => (
+          <div key={idx} className="border border-gray-700 rounded-lg overflow-hidden shadow-sm lg:h-[32rem] flex flex-col">
+            <div className="mx-0 mt-0 mb-6 h-48 bg-gray-800 animate-pulse"></div>
+            <div className="p-4 flex flex-col flex-grow">
+              <div className="h-6 bg-gray-800 animate-pulse rounded mb-2"></div>
+              <div className="h-4 bg-gray-800 animate-pulse rounded mb-2"></div>
+              <div className="h-4 bg-gray-800 animate-pulse rounded mb-2"></div>
+              <div className="h-4 bg-gray-800 animate-pulse rounded mb-6"></div>
+              <div className="mt-auto">
+                <div className="h-10 bg-gray-800 animate-pulse rounded w-28"></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};

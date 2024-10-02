@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { fetchDataFromSanity, sanityClient } from "./sanityClient";
 import imageUrlBuilder from '@sanity/image-url';
+import { ProjectsSkeleton } from "@/components/Skeletons";
 
 const builder = imageUrlBuilder(sanityClient);
 
@@ -14,16 +15,27 @@ function urlFor(source: any) {
 
 export function Projects() {
   const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const query = '*[_type == "project"] | order(startDate desc)';
-      const result = await fetchDataFromSanity(query);
-      setProjects(result);
+      try {
+        const query = '*[_type == "project"] | order(startDate desc)';
+        const result = await fetchDataFromSanity(query);
+        setProjects(result);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchData();
   }, []);
+
+  if (loading) {
+    return <ProjectsSkeleton />;
+  }
 
   return (
     <section className="py-28 px-8">
