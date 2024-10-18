@@ -2,7 +2,7 @@ import { Typography, Button } from "@material-tailwind/react";
 import logo from "../../public/image/mateen-rajput-high-resolution-logo.svg"
 import Image from "next/image";
 
-const LINKS = ["Home", "About Us", "Blog", "Service"];
+const LINKS = ["Home"];
 const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {
@@ -23,7 +23,7 @@ export function Footer() {
                 </a>
               </li>
             ))}
-            <button className="bg-gray-500 text-white px-4 py-2 rounded">subscribe</button>
+            <button className="bg-gray-500 text-white  px-4 py-2 rounded">subscribe</button>
           </ul>
         </div>
       </div>
