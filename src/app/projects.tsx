@@ -51,15 +51,16 @@ export function Projects() {
           dreams into reality.
         </p>
       </div>
-      <div className="container mx-auto grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
+      <div className="container mx-auto grid auto-rows-max grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
         <AnimatePresence>
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project._id}
-              layout="position"
+              layout
               initial={false}
               animate={{ 
                 gridColumn: selectedId === project._id ? "1 / -1" : "auto",
+                gridRow: selectedId === project._id ? `${Math.floor(index / 4) + 1}` : "auto",
                 opacity: selectedId && selectedId !== project._id ? 0.3 : 1,
                 scale: selectedId && selectedId !== project._id ? 0.95 : 1,
               }}
@@ -70,8 +71,8 @@ export function Projects() {
                 opacity: { duration: 0.2 }
               }}
               style={{ 
-                gridRow: selectedId === project._id ? "1" : "auto",
-                zIndex: selectedId === project._id ? 10 : 1 
+                zIndex: selectedId === project._id ? 10 : 1,
+                originY: 0
               }}
             >
               <ProjectCard
