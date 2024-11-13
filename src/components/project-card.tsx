@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 interface ProjectCardProps {
   img: string;
@@ -10,6 +11,10 @@ interface ProjectCardProps {
   images?: string[];
   longDescription?: string;
 }
+const truncateText = (text: string, limit: number = 200) => {
+  if (text.length <= limit) return text;
+  return text.slice(0, limit).trim() + '...';
+};
 
 export function ProjectCard({ 
   img, 
@@ -20,8 +25,24 @@ export function ProjectCard({
   images = [], 
   longDescription 
 }: ProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (isExpanded && cardRef.current) {
+      const yOffset = -100; 
+      const element = cardRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
+  }, [isExpanded]);
+
   return (
     <motion.div
+      ref={cardRef}
       layout
       onClick={onClick}
       className={`border border-gray-700 rounded-lg overflow-hidden shadow-lg transition-shadow
@@ -49,7 +70,7 @@ export function ProjectCard({
                   alt={`${title} image ${idx + 1}`}
                   width={768}
                   height={768}
-                  className="h-full w-full object-cover rounded-lg"
+                  className="h-full w-full object-contain rounded-lg"
                 />
               </motion.div>
             ))}
@@ -77,11 +98,11 @@ export function ProjectCard({
         
         <motion.p 
           layout
-          className={`font-normal !text-gray-500 ${
+          className={`font-normal !text-gray-500  ${
             isExpanded ? 'mb-6' : 'mb-6 flex-grow'
-          }`}
+          } ${!isExpanded ? 'text-ellipsis' : ''}`}
         >
-          {isExpanded ? longDescription : desc}
+          {isExpanded ? longDescription : truncateText(desc)}
         </motion.p>
 
         <motion.div layout className={isExpanded ? "flex justify-end" : "mt-auto"}>
