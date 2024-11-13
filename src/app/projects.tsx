@@ -1,7 +1,7 @@
 "use client";
 
 import { ProjectCard } from "@/components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { fetchDataFromSanity, sanityClient } from "./sanityClient";
 import imageUrlBuilder from '@sanity/image-url';
@@ -15,6 +15,8 @@ function urlFor(source: any) {
 
 export function Projects() {
   const [projects, setProjects] = useState<any[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  console.log(projects ,"projects");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,21 +51,48 @@ export function Projects() {
           dreams into reality.
         </p>
       </div>
-      <div className="container mx-auto grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
-        {projects.map((project, idx) => (
-          <motion.div 
-            key={project._id}
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
-          >
-            <ProjectCard
-              img={project.image ? urlFor(project.image).url() : ''}
-              title={project.title}
-              desc={project.shortDescription}
-            />
-          </motion.div>
-        ))}
+      <div className="container mx-auto grid auto-rows-max grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
+        <AnimatePresence>
+          {projects.map((project, index) => (
+            <motion.div
+              key={project._id}
+              layout
+              initial={false}
+              animate={{ 
+                gridColumn: selectedId === project._id ? "1 / -1" : "auto",
+                gridRow: selectedId === project._id ? `${Math.floor(index / 4) + 1}` : "auto",
+                opacity: selectedId && selectedId !== project._id ? 0.3 : 1,
+                scale: selectedId && selectedId !== project._id ? 0.95 : 1,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 350,
+                damping: 25,
+                opacity: { duration: 0.2 }
+              }}
+              style={{ 
+                zIndex: selectedId === project._id ? 10 : 1,
+                originY: 0
+              }}
+            >
+              <ProjectCard
+                img={project.image ? urlFor(project.image).url() : ''}
+                images={project.images?.map((img: any) => urlFor(img).url()) || []}
+                title={project.title}
+                desc={project.shortDescription}
+                longDescription={project.longDescription}
+                isExpanded={selectedId === project._id}
+                onClick={() => {
+                  if (selectedId === project._id) {
+                    setSelectedId(null);
+                  } else {
+                    setSelectedId(project._id);
+                  }
+                }}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );
