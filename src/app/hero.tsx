@@ -49,11 +49,12 @@ function Hero() {
 			transition={{ duration: 0.5 }}
 		>
 			<div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
-				<div className="row-start-2 lg:row-auto relative overflow-hidden">
+				<div className="order-1 lg:order-1">
 					<motion.div 
-						className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-brown"
+						className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold text-primary-brown "
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
+						
 						transition={{ duration: 0.5, delay: 0.2 }}
 					>
 						<Typist onTypingDone={() => setShowBio(true)} avgTypingDelay={40} stdTypingDelay={20}>
@@ -111,7 +112,8 @@ function Hero() {
 				<motion.div
 					initial={{ scale: 0.8 }}
 					animate={{ scale: 1 }}
-					transition={{ duration: 0.5 }}
+					transition={{ duration: 0.5 }} 
+					className="order-2 lg:order-2"
 				>
 					<Image
 						width={1024}
