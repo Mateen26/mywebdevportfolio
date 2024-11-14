@@ -10,7 +10,6 @@ function Resume() {
   
   const { ref, inView } = useInView({
     threshold: 0.1,
-    triggerOnce: true
   });
 
   useEffect(() => {

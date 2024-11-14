@@ -95,7 +95,7 @@ export function ProjectCard({
                 alt={`${title} image ${idx + 1}`}
                 width={1920}
                 height={1080}
-                className="w-auto h-full max-w-full object-contain"
+                className="w-auto h-full max-w-full object-contain rounded-lg"
                 style={{ 
                   maxHeight: '50vh',
                   backgroundColor: 'black'
@@ -115,7 +115,7 @@ export function ProjectCard({
               alt={title}
               width={1920}
               height={1080}
-              className="w-auto h-full max-w-full object-contain"
+              className="w-auto h-full max-w-full object-contain "
               style={{ backgroundColor: 'black' }}
             />
           </div>
