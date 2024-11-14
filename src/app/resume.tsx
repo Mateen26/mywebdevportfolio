@@ -1,13 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { fetchDataFromSanity } from "./sanityClient";
 import { motion } from "framer-motion";
-// import { ResumeSectionSkeleton } from "../components/Skeletons";
+import { useInView } from "react-intersection-observer";
+import { fetchDataFromSanity } from "./sanityClient";
 
 function Resume() {
   const [jobExperiences, setJobExperiences] = useState<any>(null);
-  console.log(jobExperiences, "jobExperiences");
+  
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       const query = '*[_type == "jobExperience"] | order(startDate desc)';
@@ -43,14 +48,21 @@ function Resume() {
             </svg>
           </button>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {Array.isArray(jobExperiences) && jobExperiences.map((job: any, idx: number) => (
             <motion.div
               key={job._id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-primary-gray p-6 rounded-lg shadow-lg border border-primary-brown "
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              variants={{
+                visible: { 
+                  opacity: 1, 
+                  scale: 1, 
+                  transition: { duration: 0.5, delay: idx * 0.2 } 
+                },
+                hidden: { opacity: 0, scale: 0 }
+              }}
+              className="bg-primary-gray p-6 rounded-lg shadow-lg border border-primary-brown"
             >
               <h3 className="text-2xl font-semibold mb-2 text-primary-white">{job.position}</h3>
               <h4 className="text-lg font-medium mb-4 text-primary-brown">{job.companyName}</h4>

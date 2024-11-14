@@ -74,6 +74,7 @@ export function ProjectCard({
       modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={0}
       slidesPerView={1}
+      speed={1000}
       navigation={fullscreen}
       autoplay={fullscreen ? { delay: 1500 } : false}
       pagination={fullscreen ? { clickable: true } : false}
@@ -128,7 +129,7 @@ export function ProjectCard({
       ref={cardRef}
       layout
       className={`border border-gray-700 rounded-lg overflow-hidden shadow-lg transition-shadow
-        ${isExpanded ? 'p-6' : 'lg:h-29rem] flex flex-col'}`}
+        ${isExpanded ? 'p-6' : 'lg:min-h-[30rem] lg:max-h-[30rem] flex flex-col'}`}
     >
       <motion.div 
         layout 
@@ -164,11 +165,11 @@ export function ProjectCard({
         
         <motion.p 
           layout
-          className={`font-normal !text-gray-500 ${
-            isExpanded ? 'mb-6' : 'mb-6 flex-grow'
+          className={`font-normal !text-gray-500  ${
+            isExpanded ? 'mb-6 max-h-[9rem] overflow-y-auto custom-scrollbar' : 'mb-6 flex-grow'
           }`}
         >
-          {isExpanded ? longDescription : truncateText(desc, 120)}
+          {isExpanded ? longDescription : truncateText(desc, 160)}
         </motion.p>
 
         <motion.div 

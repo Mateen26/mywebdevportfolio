@@ -48,3 +48,40 @@ body {
   .swiper-zoom-container.zoomed:active {
     cursor: grabbing;
   }
+
+  
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(18, 18, 18, 1) rgba(220, 220, 220, 0.1);
+}
+
+@media (max-width: 500px) {
+  .custom-scrollbar {
+      scrollbar-width: auto;
+      scrollbar-color: auto
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  height: 15px;
+  border-radius: 10px;
+
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(18, 18, 18, 1);
+  border-radius: 10px;
+  border: 2px solid rgba(220, 220, 220, 0.1);
+  background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: rgba(220, 220, 220, 0.1);
+  border-radius: 10px;
+
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
