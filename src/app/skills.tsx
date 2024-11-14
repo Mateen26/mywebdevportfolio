@@ -71,20 +71,20 @@ const SKILLS = [
 ];
 
 const TECH_SKILLS = [
-  { icon: FaReact, name: 'ReactJS' },
-  { icon: SiNextdotjs, name: 'NextJS' },
-  { icon: SiCypress, name: 'Cypress' },
-  { icon: FaJs, name: 'Javascript' },
-  { icon: SiTypescript, name: 'Typescript' },
-  { icon: FaReact, name: 'React Native' },
-  { icon: FaSass, name: 'SCSS' },
-  { icon: SiTailwindcss, name: 'Tailwind' },
-  { icon: FaHtml5, name: 'HTML5' },
-  { icon: FaCss3Alt, name: 'CSS3' },
-  { icon: SiFirebase, name: 'Firebase' },
-  { icon: SiSupabase, name: 'Supabase' },
-  { icon: SiSanity, name: 'Sanity.io' },
-  { icon: SiWebflow, name: 'Webflow' },
+  { icon: FaReact, name: 'ReactJS', color: '#61DAFB' },
+  { icon: SiNextdotjs, name: 'NextJS', color: '#ffffff' },
+  { icon: SiCypress, name: 'Cypress', color: '#ffffff' },
+  { icon: FaJs, name: 'Javascript', color: '#F7DF1E' },
+  { icon: SiTypescript, name: 'Typescript', color: '#3178C6' },
+  { icon: FaReact, name: 'React Native', color: '#61DAFB' },
+  { icon: FaSass, name: 'SCSS', color: '#CC6699' },
+  { icon: SiTailwindcss, name: 'Tailwind', color: '#06B6D4' },
+  { icon: FaHtml5, name: 'HTML5', color: '#E34F26' },
+  { icon: FaCss3Alt, name: 'CSS3', color: '#1572B6' },
+  { icon: SiFirebase, name: 'Firebase', color: '#FFCA28' },
+  { icon: SiSupabase, name: 'Supabase', color: '#3ECF8E' },
+  { icon: SiSanity, name: 'Sanity.io', color: '#F03E2F' },
+  { icon: SiWebflow, name: 'Webflow', color: '#4353FF' },
 ];
 
 export function Skills() {
@@ -139,7 +139,10 @@ export function Skills() {
                 hidden: { opacity: 0, y: 20 }
               }}
             >
-              <tech.icon className="w-12 h-12 text-primary-brown hover:text-primary-brown/80 transition-colors" />
+              <tech.icon 
+                className="w-12 h-12 transition-colors" 
+                style={{ color: tech.color }}
+              />
               <span className="text-sm text-gray-600">{tech.name}</span>
             </motion.div>
           ))}
