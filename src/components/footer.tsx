@@ -23,7 +23,7 @@ export function Footer() {
                 </a>
               </li>
             ))}
-            <button className="bg-gray-500 text-white  px-4 py-2 rounded">subscribe</button>
+            <button className="bg-primary-brown text-white  px-4 py-2 rounded">subscribe</button>
           </ul>
         </div>
       </div>

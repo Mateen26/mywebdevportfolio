@@ -75,7 +75,7 @@ export function ProjectCard({
       spaceBetween={0}
       slidesPerView={1}
       navigation={fullscreen}
-      autoplay={fullscreen ? { delay: 1000 } : false}
+      autoplay={fullscreen ? { delay: 1500 } : false}
       pagination={fullscreen ? { clickable: true } : false}
       className={`w-full bg-black ${fullscreen ? 'h-[50vh] max-h-[500px]' : 'h-48'}`}
       allowTouchMove={fullscreen}
