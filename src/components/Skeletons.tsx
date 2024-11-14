@@ -66,7 +66,7 @@ export const ProjectsSkeleton = () => {
       </div>
       <div className="container mx-auto grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
         {[...Array(8)].map((_, idx) => (
-          <div key={idx} className="border border-gray-700 rounded-lg overflow-hidden shadow-sm lg:h-[32rem] flex flex-col">
+          <div key={idx} className="border border-gray-700 rounded-lg overflow-hidden shadow-sm lg:h-[29rem] flex flex-col">
             <div className="mx-0 mt-0 mb-6 h-48 bg-gray-800 animate-pulse"></div>
             <div className="p-4 flex flex-col flex-grow">
               <div className="h-6 bg-gray-800 animate-pulse rounded mb-2"></div>

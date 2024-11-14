@@ -128,7 +128,7 @@ export function ProjectCard({
       ref={cardRef}
       layout
       className={`border border-gray-700 rounded-lg overflow-hidden shadow-lg transition-shadow
-        ${isExpanded ? 'p-6' : 'lg:h-[32rem] flex flex-col'}`}
+        ${isExpanded ? 'p-6' : 'lg:h-29rem] flex flex-col'}`}
     >
       <motion.div 
         layout 
