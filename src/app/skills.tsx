@@ -87,6 +87,23 @@ const TECH_SKILLS = [
   { icon: SiWebflow, name: 'Webflow', color: '#4353FF' },
 ];
 
+const dropAndBounceVariants = {
+  hidden: { 
+    y: -100,
+    opacity: 0 
+  },
+  visible: (i: number) => ({
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.6,
+      duration: 2,
+      delay: Math.random() * 0.5, // Random delay between 0 and 0.5 seconds
+    }
+  })
+};
+
 export function Skills() {
   // Separate refs for each section
   const [skillsRef, skillsInView] = useInView({
@@ -107,10 +124,6 @@ export function Skills() {
     }
   }, [control, skillsInView]);
 
-  const boxVariant = {
-    visible: { opacity: 1, scale: 1, x:0, transition: { duration: 0.5 } },
-    hidden: { opacity: 0, scale: 0, x: 100 }
-  };
   return (
     <section className="px-8 mt-20">
       <div className="container mx-auto mb-20" ref={techRef}>
@@ -121,22 +134,16 @@ export function Skills() {
           className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 justify-items-center"
           initial="hidden"
           animate={techInView ? "visible" : "hidden"}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 10 }
-          }}
         >
           {TECH_SKILLS.map((tech, idx) => (
             <motion.div
               key={idx}
               className="flex flex-col items-center gap-2"
-              variants={{
-                visible: { 
-                  opacity: 1, 
-                  y: 0, 
-                  transition: { duration: 0.5, delay: idx * 0.1 } 
-                },
-                hidden: { opacity: 0, y: 20 }
+              variants={dropAndBounceVariants}
+              custom={idx}
+              whileHover={{ 
+                scale: 1.1,
+                transition: { duration: 0.2 }
               }}
             >
               <tech.icon 
