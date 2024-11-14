@@ -1,6 +1,11 @@
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface ProjectCardProps {
   img: string;
@@ -26,6 +31,7 @@ export function ProjectCard({
   longDescription 
 }: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const allImages = [img, ...images];
 
   useEffect(() => {
     if (isExpanded && cardRef.current) {
@@ -63,11 +69,64 @@ export function ProjectCard({
     }
   }, [isExpanded]);
 
+  const ImageSlider = ({ fullscreen = false }) => (
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={0}
+      slidesPerView={1}
+      navigation={fullscreen}
+      autoplay={fullscreen ? { delay: 1000 } : false}
+      pagination={fullscreen ? { clickable: true } : false}
+      className={`w-full bg-black ${fullscreen ? 'h-[50vh] max-h-[500px]' : 'h-48'}`}
+      allowTouchMove={fullscreen}
+      style={{ backgroundColor: 'black' }}
+    >
+      {fullscreen ? (
+        allImages.map((image, idx) => (
+          <SwiperSlide 
+            key={idx} 
+            className="bg-black h-full"
+            style={{ backgroundColor: 'black' }}
+          >
+            <div className="w-full h-full flex items-center justify-center bg-black">
+              <Image
+                src={image}
+                alt={`${title} image ${idx + 1}`}
+                width={1920}
+                height={1080}
+                className="w-auto h-full max-w-full object-contain"
+                style={{ 
+                  maxHeight: '50vh',
+                  backgroundColor: 'black'
+                }}
+              />
+            </div>
+          </SwiperSlide>
+        ))
+      ) : (
+        <SwiperSlide 
+          className="bg-black h-full"
+          style={{ backgroundColor: 'black' }}
+        >
+          <div className="w-full h-full flex items-center justify-center bg-black">
+            <Image
+              src={img}
+              alt={title}
+              width={1920}
+              height={1080}
+              className="w-auto h-full max-w-full object-contain"
+              style={{ backgroundColor: 'black' }}
+            />
+          </div>
+        </SwiperSlide>
+      )}
+    </Swiper>
+  );
+
   return (
     <motion.div
       ref={cardRef}
       layout
-      onClick={onClick}
       className={`border border-gray-700 rounded-lg overflow-hidden shadow-lg transition-shadow
         ${isExpanded ? 'p-6' : 'lg:h-[32rem] flex flex-col'}`}
     >
@@ -78,37 +137,15 @@ export function ProjectCard({
         {isExpanded ? (
           <motion.div 
             layout
-            className="grid grid-cols-3 gap-4 mb-6"
+            className="mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            {images.slice(0, 6).map((image, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + idx * 0.1 }}
-                className="h-48"
-              >
-                <Image
-                  src={image}
-                  alt={`${title} image ${idx + 1}`}
-                  width={768}
-                  height={768}
-                  className="h-full w-full object-contain rounded-lg"
-                />
-              </motion.div>
-            ))}
+            <ImageSlider fullscreen={true} />
           </motion.div>
         ) : (
-          <Image
-            src={img}
-            alt={title}
-            width={768}
-            height={768}
-            className="h-full w-full object-contain rounded-lg"
-          />
+          <ImageSlider />
         )}
       </motion.div>
 
@@ -140,6 +177,10 @@ export function ProjectCard({
         >
           <motion.button
             layout
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick();
+            }}
             className="bg-primary-brown text-white text-sm px-4 py-2 rounded h-auto hover:bg-primary-brown/90"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

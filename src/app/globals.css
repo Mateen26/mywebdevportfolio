@@ -7,3 +7,44 @@ body {
     background:#0f0f0f;
   }
   
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #8B4513 !important;
+    background: rgba(255, 255, 255, 0.8);
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+  }
+  
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 20px !important;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background: #8B4513 !important;
+  }
+  
+  .swiper-zoom-container {
+    cursor: zoom-in;
+  }
+  
+  .swiper-zoom-container.zoomed {
+    cursor: grab;
+  }
+  
+  .swiper-zoom-container.zoomed:active {
+    cursor: grabbing;
+  }
