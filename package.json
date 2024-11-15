@@ -12,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.28",
     "@heroicons/react": "2.0.18",
     "@material-tailwind/react": "2.1.2",
     "@sanity/image-url": "^1.0.2",

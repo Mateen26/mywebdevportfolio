@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
+import { useFloating, offset, shift, arrow, FloatingArrow } from '@floating-ui/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -34,6 +35,19 @@ export function ProjectCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const allImages = [img, ...images];
   const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipTimeout, setTooltipTimeout] = useState<NodeJS.Timeout | null>(null);
+  const arrowRef = useRef(null);
+  
+  const {refs, floatingStyles, context} = useFloating({
+    open: showTooltip,
+    onOpenChange: setShowTooltip,
+    middleware: [
+      offset(10),
+      shift(),
+      arrow({ element: arrowRef })
+    ],
+  });
 
   useEffect(() => {
     if (isExpanded && cardRef.current && isDesktop) {
@@ -64,6 +78,22 @@ export function ProjectCard({
       }
     }
   }, [isExpanded, isDesktop]);
+
+  const handleMouseEnter = () => {
+    if (!isExpanded) {
+      const timeout = setTimeout(() => {
+        setShowTooltip(true);
+      }, 300); // 300ms delay
+      setTooltipTimeout(timeout);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (tooltipTimeout) {
+      clearTimeout(tooltipTimeout);
+    }
+    setShowTooltip(false);
+  };
 
   const ImageSlider = ({ fullscreen = false }) => (
     <Swiper
@@ -174,15 +204,41 @@ export function ProjectCard({
         </motion.h5>
         
         <motion.p 
+          ref={refs.setReference}
           layout
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           className={`font-normal !text-gray-500 ${
             isExpanded 
               ? `mb-6 ${isDesktop ? 'max-h-[9rem]' : 'max-h-[50vh]'} overflow-y-auto custom-scrollbar` 
-              : 'mb-6 flex-grow'
+              : 'mb-6 flex-grow cursor-help'
           }`}
         >
           {isExpanded ? longDescription : truncateText(desc, 145)}
         </motion.p>
+
+        <AnimatePresence>
+          {showTooltip && !isExpanded && (
+            <motion.div
+              ref={refs.setFloating}
+              style={floatingStyles}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 5 }}
+              transition={{ duration: 0.2 }}
+              className="z-50 max-w-md p-4 border border-gray-700 rounded-lg bg-primary-black shadow-lg"
+            >
+              <FloatingArrow
+                ref={arrowRef}
+                context={context}
+                className="fill-primary-black"
+                stroke="rgb(55, 65, 81)"
+                strokeWidth={1}
+              />
+              {desc}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <motion.div 
           layout 
