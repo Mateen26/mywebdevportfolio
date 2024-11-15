@@ -9,8 +9,9 @@ import {
 } from "@heroicons/react/24/solid";
 import logo from "../../public/image/mateen-rajput-high-resolution-logo.svg"
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion"; // Add this import
-import { Link, animateScroll as scroll } from 'react-scroll'; // Updated import
+import Link from 'next/link';
+import { motion, AnimatePresence } from "framer-motion";
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 const NAV_MENU = [
   {
@@ -80,22 +81,24 @@ export function Navbar() {
   };
 
   return (
-    <nav className=" border-0 sticky top-0 z-50 !bg-primary-black shadow py-4 px-6">
-      <div className="absolute inset-0  filter blur-sm !bg-primary-black" />
-      <div className="container mx-auto flex items-center justify-between  relative z-10  mt-2">
+    <nav className="border-0 sticky top-0 z-50 !bg-primary-black shadow py-4 px-6">
+      <div className="absolute inset-0 filter blur-sm !bg-primary-black" />
+      <div className="container mx-auto flex items-center justify-between relative z-10 mt-2">
         <motion.div
           initial={{ opacity: 0, filter: "blur(10px)" }}
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1 }}
         >
-          <Image 
-            src={logo} 
-            alt="logo" 
-            width={200} 
-            height={200} 
-            onClick={scrollToTop}
-            style={{ cursor: 'pointer' }}
-          />
+          <Link href="/">
+            <Image 
+              src={logo} 
+              alt="logo" 
+              width={200} 
+              height={200} 
+              onClick={scrollToTop}
+              style={{ cursor: 'pointer' }}
+            />
+          </Link>
         </motion.div>
         <div className="hidden items-center gap-2 lg:flex">
           <motion.div

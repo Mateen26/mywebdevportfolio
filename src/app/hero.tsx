@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import 'react-typist/dist/Typist.css';
 import Typist from 'react-typist';
 import { HeroSectionSkeleton, WindAnimation } from '../components/Skeletons';
+import Link from 'next/link';
 
 const builder = imageUrlBuilder(sanityClient); 
 
@@ -104,9 +105,12 @@ function Hero() {
 						transition={{ duration: 0.5 }}
 					>
 						Read my{" "}
-						<a href="#" className="font-medium underline transition-colors text-primary-brown">
+						<Link 
+							href="/terms" 
+							className="font-medium underline transition-colors text-primary-brown hover:text-primary-brown/80"
+						>
 							Terms and Conditions
-							</a>
+						</Link>
 					</motion.p>
 				</div>
 				<motion.div
