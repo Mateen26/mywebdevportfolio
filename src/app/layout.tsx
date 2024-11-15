@@ -11,9 +11,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js + Tailwind Portfolio Page",
+  title: "Mateen | Front-End Developer",
   description:
-    "Introducing Tailwind Portfolio Page, a versatile and stylish portfolio template built on the foundation of Tailwind CSS and Material Tailwind.",
+    "Experienced Front-End Developer specializing in React, Next.js, and modern web technologies. Explore my portfolio showcasing dynamic web applications, mobile development projects, and serverless solutions built with cutting-edge technologies including TypeScript, Tailwind CSS, Firebase, and more.",
 };
 
 export default function RootLayout({
