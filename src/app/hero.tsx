@@ -88,7 +88,7 @@ function Hero() {
 						transition={{ duration: 0.5 }}
 					>
 						<p className="text-primary-white text-lg">
-							Ready to bring your digital vision to life? Let's create something 
+							Ready to bring your digital vision to life? Let&apos;s create something 
 							<span className="text-primary-brown font-medium"> extraordinary </span> 
 							together.
 						</p>
@@ -97,7 +97,7 @@ function Hero() {
 								onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
 								className="bg-primary-brown text-white px-6 py-3 rounded-lg hover:bg-primary-brown/90 transition-all transform hover:scale-105 font-medium"
 							>
-								Let's Build Together →
+								Let&apos;s Build Together →
 							</button>
 							<button 
 								onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
