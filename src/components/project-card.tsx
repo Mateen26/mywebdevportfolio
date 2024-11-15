@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { useMediaQuery } from 'react-responsive';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -32,34 +33,29 @@ export function ProjectCard({
 }: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const allImages = [img, ...images];
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
 
   useEffect(() => {
-    if (isExpanded && cardRef.current) {
+    if (isExpanded && cardRef.current && isDesktop) {
       const card = cardRef.current;
       const cardRect = card.getBoundingClientRect();
       const scrollOffset = window.pageYOffset;
       const windowHeight = window.innerHeight;
-      const buffer = 100; // pixels from top/bottom of viewport
+      const buffer = 100;
       
-      // Calculate optimal scroll position
       let targetScroll = scrollOffset;
       
-      // If card is too high
       if (cardRect.top < buffer) {
         targetScroll = scrollOffset + cardRect.top - buffer;
       }
-      // If card is too low
       else if (cardRect.bottom > windowHeight - buffer) {
-        // Try to center it if it's smaller than viewport
         if (cardRect.height < windowHeight - buffer * 2) {
           targetScroll = scrollOffset + cardRect.top - ((windowHeight - cardRect.height) / 2);
         } else {
-          // If card is taller than viewport, align to top with buffer
           targetScroll = scrollOffset + cardRect.top - buffer;
         }
       }
       
-      // Only scroll if necessary
       if (targetScroll !== scrollOffset) {
         window.scrollTo({
           top: targetScroll,
@@ -67,7 +63,7 @@ export function ProjectCard({
         });
       }
     }
-  }, [isExpanded]);
+  }, [isExpanded, isDesktop]);
 
   const ImageSlider = ({ fullscreen = false }) => (
     <Swiper
@@ -129,7 +125,21 @@ export function ProjectCard({
       ref={cardRef}
       layout
       className={`border border-gray-700 rounded-lg overflow-hidden shadow-lg transition-shadow
-        ${isExpanded ? 'p-6' : 'lg:min-h-[30rem] lg:max-h-[30rem] flex flex-col'}`}
+        ${isExpanded 
+          ? isDesktop 
+            ? 'p-6 relative z-10' 
+            : 'p-4 relative z-10 h-auto'
+          : 'flex flex-col'
+        }
+        `}
+      style={{
+        position: 'relative',
+        backgroundColor: isExpanded ? 'rgb(17, 17, 17)' : undefined,
+        gridColumn: isDesktop && isExpanded ? '1 / -1' : undefined,
+        transform: 'none',
+        zIndex: isExpanded ? 10 : 1,
+        transition: 'all 1s ease-in-out',
+      }}
     >
       <motion.div 
         layout 
@@ -141,7 +151,7 @@ export function ProjectCard({
             className="mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.5 }}
           >
             <ImageSlider fullscreen={true} />
           </motion.div>
@@ -165,8 +175,10 @@ export function ProjectCard({
         
         <motion.p 
           layout
-          className={`font-normal !text-gray-500  ${
-            isExpanded ? 'mb-6 max-h-[9rem] overflow-y-auto custom-scrollbar' : 'mb-6 flex-grow'
+          className={`font-normal !text-gray-500 ${
+            isExpanded 
+              ? `mb-6 ${isDesktop ? 'max-h-[9rem]' : 'max-h-[50vh]'} overflow-y-auto custom-scrollbar` 
+              : 'mb-6 flex-grow'
           }`}
         >
           {isExpanded ? longDescription : truncateText(desc, 160)}
@@ -174,13 +186,22 @@ export function ProjectCard({
 
         <motion.div 
           layout 
-          className={isExpanded ? "flex justify-end" : "mt-auto"}
+          className={`${isExpanded ? "flex justify-end" : "mt-auto"}`}
         >
           <motion.button
             layout
             onClick={(e) => {
               e.stopPropagation();
               onClick();
+              
+              if (!isDesktop && !isExpanded) {
+                setTimeout(() => {
+                  cardRef.current?.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'nearest'
+                  });
+                }, 100);
+              }
             }}
             className="bg-primary-brown text-white text-sm px-4 py-2 rounded h-auto hover:bg-primary-brown/90"
             whileHover={{ scale: 1.05 }}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { fetchDataFromSanity, sanityClient } from "./sanityClient";
 import imageUrlBuilder from '@sanity/image-url';
 import { ProjectsSkeleton } from "@/components/Skeletons";
+import { useMediaQuery } from 'react-responsive';
 
 const builder = imageUrlBuilder(sanityClient);
 
@@ -16,8 +17,8 @@ function urlFor(source: any) {
 export function Projects() {
   const [projects, setProjects] = useState<any[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  console.log(projects ,"projects");
   const [loading, setLoading] = useState(true);
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,16 +52,19 @@ export function Projects() {
           dreams into reality.
         </p>
       </div>
-      <div className="container mx-auto grid auto-rows-max grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-5 gap-y-10 relative">
         <AnimatePresence>
           {projects.map((project, index) => (
             <motion.div
               key={project._id}
               layout
               initial={false}
-              animate={{ 
+              animate={isDesktop ? { 
                 gridColumn: selectedId === project._id ? "1 / -1" : "auto",
                 gridRow: selectedId === project._id ? `${Math.floor(index / 4) + 1}` : "auto",
+                opacity: selectedId && selectedId !== project._id ? 0.3 : 1,
+                scale: selectedId && selectedId !== project._id ? 0.95 : 1,
+              } : {
                 opacity: selectedId && selectedId !== project._id ? 0.3 : 1,
                 scale: selectedId && selectedId !== project._id ? 0.95 : 1,
               }}
@@ -72,7 +76,8 @@ export function Projects() {
               }}
               style={{ 
                 zIndex: selectedId === project._id ? 10 : 1,
-                originY: 0
+                originY: 0,
+                gridColumn: isDesktop && selectedId === project._id ? "1 / -1" : "auto"
               }}
             >
               <ProjectCard
