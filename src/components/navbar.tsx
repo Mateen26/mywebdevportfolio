@@ -1,51 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
-  RectangleStackIcon,
-  UserCircleIcon,
-  CommandLineIcon,
-  Squares2X2Icon,
   XMarkIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 import logo from "../../public/image/mateen-rajput-high-resolution-logo.svg"
 import Image from "next/image";
 import Link from 'next/link';
-import { motion, AnimatePresence } from "framer-motion";
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
-
-const NAV_MENU = [
-  {
-    name: "Page",
-    icon: RectangleStackIcon,
-  },
-  {
-    name: "Account",
-    icon: UserCircleIcon,
-  },
-  {
-    name: "Docs",
-    icon: CommandLineIcon,
-    href: "https://www.material-tailwind.com/docs/react/installation",
-  },
-];
-
-interface NavItemProps {
-  children: React.ReactNode;
-  href?: string;
-}
-
-function NavItem({ children, href }: NavItemProps) {
-  return (
-    <li>
-      <a
-        href={href}
-        className="flex items-center gap-2 font-medium text-primary-white"
-      >
-        {children}
-      </a>
-    </li>
-  );
-}
+import { motion } from "framer-motion";
+import { animateScroll as scroll } from 'react-scroll';
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -94,23 +56,30 @@ export function Navbar() {
               src={logo} 
               alt="logo" 
               width={200} 
-              height={200} 
               onClick={scrollToTop}
+              height={200} 
               style={{ cursor: 'pointer' }}
             />
           </Link>
         </motion.div>
+        
+        {/* Desktop button */}
         <div className="hidden items-center gap-2 lg:flex">
           <motion.div
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1 }}
           >
-            <button onClick={handleScrollToContact} className="bg-primary-brown text-white px-4 py-2 rounded cursor-pointer">
-              Let&lsquo;s Connect
+            <button 
+              onClick={handleScrollToContact} 
+              className="bg-primary-brown text-white px-4 py-2 rounded cursor-pointer hover:bg-primary-brown/90 transition-colors"
+            >
+              Let&apos;s Connect
             </button>
           </motion.div>
         </div>
+
+        {/* Mobile menu button */}
         <button
           onClick={handleOpen}
           className="ml-auto inline-block lg:hidden"
@@ -122,34 +91,24 @@ export function Navbar() {
           )}
         </button>
       </div>
-      <AnimatePresence>
-        {open && (
-          <motion.div 
-            className="container mx-auto mt-3 border-t border-gray-200 px-2 pt-4"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ul className="flex flex-col gap-4">
-              {NAV_MENU.map(({ name, icon: Icon }) => (
-                <NavItem key={name}>
-                  <Icon className="h-5 w-5" />
-                  {name}
-                </NavItem>
-              ))}
-            </ul>
-            <div className="mt-6 mb-4 flex flex-col items-start gap-4">
-              <button
-                onClick={handleScrollToContact}
-                className="bg-gray-900 text-primary-white px-4 py-2 rounded w-full cursor-pointer"
-              >
-                Let&lsquo;s Connect
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+      {/* Mobile menu */}
+      <div 
+        className={`lg:hidden overflow-hidden duration-300 ease-in-out ${
+          open ? 'max-h-[500px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+        }`}
+      >
+        <div className="container mx-auto relative">
+          <div className="py-4 border-t border-gray-700/50 mt-4">
+            <button
+              onClick={handleScrollToContact}
+              className="w-full bg-primary-brown text-white px-4 py-2 rounded cursor-pointer hover:bg-primary-brown/90 transition-colors"
+            >
+              Let&apos;s Connect
+            </button>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }

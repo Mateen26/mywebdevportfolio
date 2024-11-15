@@ -34,20 +34,42 @@ export const WindAnimation = () => {
 
 
 export const HeroSectionSkeleton = () => {
-	return (
-    <div className="container mt-20 mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2 px-6">
-    <div className="row-start-2 lg:row-auto">
-      <div className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold bg-gray-800 animate-pulse h-10 w-3/4"></div>
-      <div className="mb-4 !text-gray-800 md:pr-16 xl:pr-28 bg-gray-800 animate-pulse h-6 w-full"></div>
-      <div className="grid">
-        <span className="mb-2 text-gray-800 font-medium bg-gray-800 animate-pulse h-4 w-1/4"></span>
-        <div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
-          <div className="bg-gray-800 animate-pulse h-10 w-full md:w-[12rem]"></div>
+  return (
+    <div className="bg-primary-black p-8 lg:mt-20">
+      <div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
+        <div className="order-1 lg:order-1">
+          {/* Title skeleton */}
+          <div className="mb-4 lg:text-5xl !leading-tight text-3xl font-bold">
+            <div className="h-12 lg:h-16 bg-primary-brown/20 rounded-lg w-3/4 animate-pulse" />
+          </div>
+
+          {/* Bio text skeleton */}
+          <div className="mb-4 md:pr-16 xl:pr-28">
+            <div className="h-6 bg-gray-700/20 rounded w-full animate-pulse" />
+            <div className="h-6 bg-gray-700/20 rounded w-3/4 mt-2 animate-pulse" />
+          </div>
+
+          {/* Email input section skeleton */}
+          <div className="grid mb-4">
+            <div className="mb-2 h-5 bg-primary-brown/20 rounded w-24 animate-pulse" />
+            <div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
+              <div className="h-12 bg-gray-700/20 rounded w-full animate-pulse" />
+              <div className="h-12 bg-primary-brown/20 rounded w-full md:w-[12rem] animate-pulse" />
+            </div>
+          </div>
+
+          {/* Terms link skeleton */}
+          <div className="flex items-center gap-2">
+            <div className="h-5 bg-gray-700/20 rounded w-16 animate-pulse" />
+            <div className="h-5 bg-primary-brown/20 rounded w-32 animate-pulse" />
+          </div>
+        </div>
+
+        {/* Image skeleton */}
+        <div className="order-2 lg:order-2">
+          <div className="h-[36rem] w-full rounded-xl bg-gray-700/20 animate-pulse" />
         </div>
       </div>
-      <div className="font-normal !text-gray-800 bg-gray-800 animate-pulse h-4 w-1/2"></div>
-    </div>
-    <div className="h-[36rem] w-full rounded-xl bg-gray-800 animate-pulse"></div>
     </div>
   );
 };
