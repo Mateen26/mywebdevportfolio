@@ -35,7 +35,7 @@ export const WindAnimation = () => {
 
 export const HeroSectionSkeleton = () => {
   return (
-    <div className="bg-primary-black p-8 lg:mt-20">
+    <div className="bg-primary-black py-8 px-12 lg:mt-20">
       <div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
         <div className="order-1 lg:order-1">
           {/* Title skeleton */}
@@ -45,21 +45,22 @@ export const HeroSectionSkeleton = () => {
 
           {/* Bio text skeleton */}
           <div className="mb-4 md:pr-16 xl:pr-28">
-            <div className="h-6 bg-gray-700/20 rounded w-full animate-pulse" />
-            <div className="h-6 bg-gray-700/20 rounded w-3/4 mt-2 animate-pulse" />
+            <div className="h-8 bg-gray-700/20 rounded w-full animate-pulse" />
           </div>
 
-          {/* Email input section skeleton */}
-          <div className="grid mb-4">
-            <div className="mb-2 h-5 bg-primary-brown/20 rounded w-24 animate-pulse" />
-            <div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
-              <div className="h-12 bg-gray-700/20 rounded w-full animate-pulse" />
-              <div className="h-12 bg-primary-brown/20 rounded w-full md:w-[12rem] animate-pulse" />
+          {/* Ready to bring text skeleton */}
+          <div className="grid gap-6 md:pr-16 xl:pr-28">
+            <div className="h-8 bg-gray-700/20 rounded-lg w-full animate-pulse" />
+            
+            {/* Buttons skeleton */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="h-12 bg-primary-brown/20 rounded-lg w-full sm:w-48 animate-pulse" />
+              <div className="h-12 bg-gray-700/20 rounded-lg w-full sm:w-48 animate-pulse" />
             </div>
           </div>
 
           {/* Terms link skeleton */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mt-6">
             <div className="h-5 bg-gray-700/20 rounded w-16 animate-pulse" />
             <div className="h-5 bg-primary-brown/20 rounded w-32 animate-pulse" />
           </div>

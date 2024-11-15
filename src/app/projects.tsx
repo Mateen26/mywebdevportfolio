@@ -41,7 +41,7 @@ export function Projects() {
   }
 
   return (
-    <section className="py-28 px-8">
+    <section className="py-28 px-8 md:px-12" id="projects">
       <div className="container mx-auto mb-20 text-center">
         <h2 className="mb-4 text-primary-brown text-2xl font-bold">
           My Projects

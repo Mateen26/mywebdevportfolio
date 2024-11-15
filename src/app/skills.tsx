@@ -125,7 +125,7 @@ export function Skills() {
   }, [control, skillsInView]);
 
   return (
-    <section className="px-8 mt-20">
+    <section className="px-8 md:px-12 mt-20">
       <div className="container mx-auto mb-20" ref={techRef}>
         <h2 className="text-center mb-12 font-bold uppercase text-primary-brown text-2xl">
           Technologies I Work With

@@ -44,7 +44,7 @@ function Hero() {
 
 	return (
 		<motion.header 
-			className="bg-primary-black p-8 lg:mt-20"
+			className="bg-primary-black py-8 px-12 lg:mt-20"
 			initial={{ opacity: 0 }} 
 			animate={{ opacity: 1 }} 
 			transition={{ duration: 0.5 }}
@@ -82,24 +82,33 @@ function Hero() {
 						</motion.div>
 					)}
 					<motion.div 
-						className="grid"
+						className="grid gap-6 md:pr-16 xl:pr-28"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.5 }}
 					>
-						<span className="mb-2 text-primary-brown font-medium">
-							Your email
-						</span>
-						<div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
-							{/* @ts-ignore */}
-							<Input color="gray" label="Enter your email" size="lg" />
-							<button color="gray" className="w-full px-4 md:w-[12rem]">
-								require offer
+						<p className="text-primary-white text-lg">
+							Ready to bring your digital vision to life? Let's create something 
+							<span className="text-primary-brown font-medium"> extraordinary </span> 
+							together.
+						</p>
+						<div className="flex flex-col sm:flex-row gap-4">
+							<button 
+								onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+								className="bg-primary-brown text-white px-6 py-3 rounded-lg hover:bg-primary-brown/90 transition-all transform hover:scale-105 font-medium"
+							>
+								Let's Build Together →
+							</button>
+							<button 
+								onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+								className="border border-primary-brown text-primary-brown px-6 py-3 rounded-lg hover:bg-primary-brown/10 transition-all text-center font-medium"
+							>
+								View My Work →
 							</button>
 						</div>
 					</motion.div>
 					<motion.p 
-						className="font-normal !text-primary-white"
+						className="font-normal !text-primary-white mt-6"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.5 }}

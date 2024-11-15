@@ -181,7 +181,7 @@ export function ProjectCard({
               : 'mb-6 flex-grow'
           }`}
         >
-          {isExpanded ? longDescription : truncateText(desc, 160)}
+          {isExpanded ? longDescription : truncateText(desc, 145)}
         </motion.p>
 
         <motion.div 
