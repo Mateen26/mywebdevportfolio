@@ -157,9 +157,9 @@ export function ProjectCard({
       className={`border border-gray-700 rounded-lg overflow-hidden shadow-lg transition-shadow
         ${isExpanded 
           ? isDesktop 
-            ? 'p-6 relative z-10' 
-            : 'p-4 relative z-10 h-auto'
-          : 'flex flex-col'
+            ? 'p-6 relative z-10 border-primary-brown' 
+            : 'p-4 relative z-10 h-auto border-primary-brown'
+          : 'flex flex-col '
         }
         `}
       style={{
